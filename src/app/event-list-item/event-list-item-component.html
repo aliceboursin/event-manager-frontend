@@ -1,0 +1,12 @@
+<div class="pt-4 p-2" *ngIf="event">
+    <h3 class="title">{{ event.title }}</h3>
+    <p>{{ event.description }}</p>
+    <div>
+        <span class="badge rounded-pill text-bg-light">
+            {{ event.category.name}}
+        </span>
+        <div>{{ event.address }} , {{event.city}}</div>
+        <div>{{ event.date | date: 'MMM. d, y'  }} , {{event.time}}</div>
+        <div>Creator : {{ event.owner.username}}</div>
+    </div>
+</div>

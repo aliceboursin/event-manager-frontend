@@ -1,0 +1,7 @@
+<div *ngIf ="events && events.length">
+    <app-event-list-item *ngFor ="let event of events" [event] ="event"></app-event-list-item>
+</div>
+
+<div *ngIf="!events || events.length === 0">
+    <p>No events availible.</p>
+</div>

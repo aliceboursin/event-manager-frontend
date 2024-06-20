@@ -11,13 +11,18 @@ import { AuthService } from './services/auth.service';
 import {HttpClientModule } from '@angular/common/http';
 import { SessionStorageService } from './services/session.storage.service';
 import { SignUpComponent } from './signup/signup.component';
+import { EventService } from './services/event.service';
+import { EventListComponent } from './event-list/event-list.component';
+import { EventListItemComponent } from './event-list-item/event-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    EventListComponent,
+    EventListItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ import { SignUpComponent } from './signup/signup.component';
   ],
   providers: [
     AuthService, 
-    SessionStorageService
+    SessionStorageService,
+    EventService
   ],
   bootstrap: [AppComponent]
 })
