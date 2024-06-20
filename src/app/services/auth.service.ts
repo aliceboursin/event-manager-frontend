@@ -18,7 +18,7 @@ export class AuthService {
     }
 
     signup(authData : AuthData) : Observable<any>{
-        const signupUrl = `${this.authUrl}/signup`;
+        const signupUrl = `${this.authUrl}/register`;
         return this.http.post(signupUrl, authData, { responseType: 'text' });
     }
 
