@@ -7,20 +7,29 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
+import {HttpClientModule } from '@angular/common/http';
+import { SessionStorageService } from './services/session.storage.service';
+import { SignUpComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService, 
+    SessionStorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

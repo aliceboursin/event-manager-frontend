@@ -1,0 +1,47 @@
+<div class="container">
+  <main class="form-container mt-5">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Username -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" class="form-control" id="username" autocomplete="off" placeholder="Username" formControlName="username" [class.is-invalid]="username.invalid && username.touched" [class.is-valid]="username.valid && username.touched" />
+        <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+          <div *ngIf="username.errors?.['required']">Username is required</div>
+        </div>
+      </div>
+  
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" [class.is-invalid]="password.invalid && password.touched" [class.is-valid]="password.valid && password.touched" />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          <div *ngIf="password.errors?.['required']">Password is required</div>
+          <div *ngIf="password.errors?.['missingUpperCase']">Password should contain at least 1 upper case letter</div>
+          <div *ngIf="password.errors?.['missingLowerCase']">Password should contain at least 1 lower case letter</div>
+          <div *ngIf="password.errors?.['missingNumeric']">Password should contain at least 1 number</div>
+          <div *ngIf="password.errors?.['minlength']">Password should be 8 characters or more</div>
+        </div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password:</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" [class.is-valid]="confirmPassword.valid && confirmPassword.touched" />
+        <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="invalid-feedback">
+          <div *ngIf="confirmPassword.errors?.['required']">Please confirm your password</div>
+        </div>
+      </div>
+
+      <!-- Passwords do not match error -->
+      <div *ngIf="form.errors?.['passwordsDoNotMatch'] && (password.touched || confirmPassword.touched)" class="text-danger">
+        Passwords do not match
+      </div>
+  
+      <!-- Buttons -->
+      <div class="button-container">
+        <button type="submit" class="btn btn-primary mb-2">Confirm</button>
+        <button type="button" class="btn btn-outline-primary mb-3" [routerLink]="['']">Back</button>
+      </div>
+    </form>
+  </main>
+</div>
