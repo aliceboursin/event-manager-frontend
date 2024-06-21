@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { hasLowerCase, hasNumeric, hasUpperCase } from '../validators/text.validators';
-import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AuthData } from '../data/authdata';
 import { SessionStorageService } from '../services/session.storage.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -14,7 +13,7 @@ import { SessionStorageService } from '../services/session.storage.service';
 })
 export class LoginComponent {
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private sessionStorageService: SessionStorageService){};
+    constructor(private fb: FormBuilder, private authService: AuthService, private sessionStorageService: SessionStorageService,  public dialogRef: MatDialogRef<LoginComponent>){};
 
     form = this.fb.group({
         username: [
@@ -28,10 +27,6 @@ export class LoginComponent {
             '',
             [
                 Validators.required,
-       //         Validators.minLength(8),
-     //           hasUpperCase(),
-   //             hasLowerCase(),
- //               hasNumeric(),
             ],
         ],
     });
@@ -57,8 +52,12 @@ export class LoginComponent {
             },
             error => {
               console.error('Login failed:', error);
-              // Gérez l'affichage des erreurs ici
             }
           );
     }
+
+    
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

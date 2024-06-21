@@ -14,6 +14,9 @@ import { SignUpComponent } from './signup/signup.component';
 import { EventService } from './services/event.service';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventListItemComponent } from './event-list-item/event-list-item.component';
+import {TopBarUnloggedComponent } from './top-bar-unlogged/top-bar.component-unlogged';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { EventListItemComponent } from './event-list-item/event-list-item.compon
     SignUpComponent,
     EventListComponent,
     EventListItemComponent,
+    TopBarUnloggedComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,11 +34,13 @@ import { EventListItemComponent } from './event-list-item/event-list-item.compon
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   providers: [
     AuthService, 
     SessionStorageService,
-    EventService
+    EventService,
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

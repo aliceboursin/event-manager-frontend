@@ -1,6 +1,8 @@
+
 <div class="container">
-  <main class="form-container mt-5">
+  <main class="mt-5">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <a href="#" class="back-link" (click)="closeDialog()"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
       <!-- Username -->
       <div class="mb-3">
         <label for="username" class="form-label">Username:</label>
@@ -22,8 +24,7 @@
           <div *ngIf="password.errors?.['minlength']">Password should be 8 characters or more</div>
         </div>
       </div>
-
-      <!-- Confirm Password -->
+      
       <div class="mb-3">
         <label for="confirmPassword" class="form-label">Confirm Password:</label>
         <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" [class.is-valid]="confirmPassword.valid && confirmPassword.touched" />
@@ -32,16 +33,63 @@
         </div>
       </div>
 
-      <!-- Passwords do not match error -->
       <div *ngIf="form.errors?.['passwordsDoNotMatch'] && (password.touched || confirmPassword.touched)" class="text-danger">
         Passwords do not match
       </div>
-  
-      <!-- Buttons -->
+
       <div class="button-container">
-        <button type="submit" class="btn btn-primary mb-2">Confirm</button>
-        <button type="button" class="btn btn-outline-primary mb-3" [routerLink]="['']">Back</button>
+        <button type="submit" class="btn btn-primary mb-2">CONFIRM</button>
+      </div>
+      <div class="signup-link">
+        Already registered ? <a [routerLink]="['/signup']">Login</a>
       </div>
     </form>
   </main>
 </div>
+
+<!--
+<div class="container">
+  <main class="mt-5">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <a href="#" class="back-link" (click)="closeDialog()"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+      <h2 class="form-title">Signup</h2>
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="username"
+          autocomplete="off"
+          placeholder="Email"
+          formControlName="username"
+          [class.is-invalid]="username.invalid && username.touched"
+          [class.is-valid]="username.valid && username.touched"
+        />
+        <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+          <div *ngIf="username.errors?.['required']">Email is required</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+          [class.is-invalid]="password.invalid && password.touched"
+          [class.is-valid]="password.valid && password.touched"
+        />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          <div *ngIf="password.errors?.['required']">Password is required</div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn btn-primary mb-2">CONFIRM</button>
+      </div>
+      <div class="signup-link">
+        Already registered ? <a [routerLink]="['/signup']">Login</a>
+      </div>
+    </form>
+  </main>
+</div> -->

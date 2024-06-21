@@ -1,4 +1,5 @@
-<div class="container">
+<!--<app-top-bar-unlogged></app-top-bar-unlogged>-->
+<!--<div class="container">
     <main class="form-container mt-5">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="mb-3">
@@ -40,5 +41,101 @@
         </div>
       </form>
     </main>
+  </div>-->
+
+  <!--
+ <div class="container">
+    <main class="mt-5">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="">
+          <label for="username" class="form-label">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            autocomplete="off"
+            placeholder="Username"
+            formControlName="username"
+            [class.is-invalid]="username.invalid && username.touched"
+            [class.is-valid]="username.valid && username.touched"
+          />
+          <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+            <div *ngIf="username.errors?.['required']">Username is required</div>
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+            [class.is-invalid]="password.invalid && password.touched"
+            [class.is-valid]="password.valid && password.touched"
+          />
+          <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+            <div *ngIf="password.errors?.['required']">Password is required</div>
+          </div>
+        </div>
+  
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary mb-2">Login</button>
+          <button type="button" class="btn btn-outline-primary mb-3" [routerLink]="['/signup']">Sign up</button>
+        </div>
+      </form>
+    </main>
   </div>
+
+-->
+
+<div class="container">
+  <main class="mt-5">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <a href="#" class="back-link" (click)="closeDialog()"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+      <h2 class="form-title">LOGIN</h2>
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="username"
+          autocomplete="off"
+          placeholder="Email"
+          formControlName="username"
+          [class.is-invalid]="username.invalid && username.touched"
+          [class.is-valid]="username.valid && username.touched"
+        />
+        <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+          <div *ngIf="username.errors?.['required']">Email is required</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+          [class.is-invalid]="password.invalid && password.touched"
+          [class.is-valid]="password.valid && password.touched"
+        />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          <div *ngIf="password.errors?.['required']">Password is required</div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn btn-primary mb-2">LOGIN</button>
+      </div>
+      <div class="signup-link">
+        New here ? <a [routerLink]="['/signup']">Sign Up</a>
+      </div>
+    </form>
+  </main>
+</div>
+
+  
+  
   

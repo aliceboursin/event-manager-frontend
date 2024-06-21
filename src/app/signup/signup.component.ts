@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { hasLowerCase, hasNumeric, hasUpperCase, passwordsMatch } from '../validators/text.validators';
-import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { AuthData } from '../data/authdata';
 import { SessionStorageService } from '../services/session.storage.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { SessionStorageService } from '../services/session.storage.service';
 })
 export class SignUpComponent {
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private sessionStorageService: SessionStorageService){};
+    constructor(private fb: FormBuilder, private authService: AuthService, private sessionStorageService: SessionStorageService, public dialogRef: MatDialogRef<SignUpComponent>, public dialog: MatDialog){};
 
     form = this.fb.group({
         username: [
@@ -67,8 +68,22 @@ export class SignUpComponent {
             },
             error => {
               console.error('Register failed:', error);
-              // Gérez l'affichage des erreurs ici
+
             }
           );
     }
+
+    closeDialog(): void {
+        this.dialogRef.close();
+      }
+
+    openLogin(): void {
+        this.dialogRef.close();
+        const dialogRefLogin = this.dialog.open(LoginComponent, {
+          width: '50%',
+          position: { right: '0' },
+          panelClass: 'custom-dialog-container'
+        });
+      }
+
 }
