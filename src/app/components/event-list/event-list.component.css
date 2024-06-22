@@ -1,0 +1,10 @@
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  background-color: black;
+  padding: 20px;
+  margin: 0; /* Remove default margin */
+  width: 100%; /* Ensure the grid takes the full width of the container */
+  box-sizing: border-box; /* Ensure padding and borders are included in the width */
+}
