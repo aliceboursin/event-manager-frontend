@@ -1,9 +1,9 @@
-.event-page {
+.category-page {
   background-color: black;
   color: white;
 }
 
-.event-list {
+.category-list {
   display: grid;
   background-color: black;
   color: white;
