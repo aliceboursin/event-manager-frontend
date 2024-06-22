@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../environment/environment.prod";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { User } from "../data/user";
+import { Observable} from "rxjs";
 import { AuthData } from "../data/authdata";
 
 @Injectable()
@@ -14,12 +13,12 @@ export class AuthService {
 
     login(authData: AuthData) : Observable<any>{
         const loginUrl = `${this.authUrl}/login`;
-        return this.http.post(loginUrl, authData, { responseType: 'text' });
+        return this.http.post(loginUrl, authData, { responseType: 'json' });
     }
 
     signup(authData : AuthData) : Observable<any>{
         const signupUrl = `${this.authUrl}/register`;
-        return this.http.post(signupUrl, authData, { responseType: 'text' });
+        return this.http.post(signupUrl, authData, { responseType: 'json' });
     }
 
 }

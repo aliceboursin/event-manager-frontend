@@ -79,6 +79,7 @@ export class SignUpComponent {
                   console.log('Register successful:', response);
                   const userId = response.userId;
                   this.sessionStorageService.setItem('userId', userId);
+                  this.sessionStorageService.setItem('username', this.form.get('username')?.value ?? '');
                   this.toastService.showToast("Register succeed!", "success");
                   this.closeDialog();
                   this.goToEventsPage();

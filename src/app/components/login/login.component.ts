@@ -65,6 +65,7 @@ export class LoginComponent {
             console.log('Login successful:', response);
             const userId = response.userId;
             this.sessionStorageService.setItem('userId', userId);
+            this.sessionStorageService.setItem('username', this.form.get('username')?.value ?? '');
             this.toastService.showToast("Welcome back !", "success");
             this.goToEventsPage();
             this.closeDialog();
