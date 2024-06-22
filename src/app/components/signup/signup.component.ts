@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { hasLowerCase, hasNumeric, hasUpperCase, passwordsMatch } from '../validators/text.validators';
-import { AuthService } from '../services/auth.service';
-import { AuthData } from '../data/authdata';
-import { SessionStorageService } from '../services/session.storage.service';
+import { hasLowerCase, hasNumeric, hasUpperCase, passwordsMatch } from '../../validators/text.validators';
+import { AuthService } from '../../services/auth.service';
+import { AuthData } from '../../data/authdata';
+import { SessionStorageService } from '../../services/session.storage.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 
@@ -75,7 +75,7 @@ export class SignUpComponent {
 
     closeDialog(): void {
         this.dialogRef.close();
-      }
+    }
 
     openLogin(): void {
         this.dialogRef.close();

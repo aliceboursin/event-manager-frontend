@@ -43,14 +43,14 @@ export function hasNumeric(): ValidatorFn {
 }
 
 export function passwordsMatch(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const password = control.get('password');
-      const confirmPassword = control.get('confirmPassword');
-  
-      if (!password || !confirmPassword) {
-        return null;
-      }
-  
-      return password.value === confirmPassword.value ? null : { passwordsDoNotMatch: true };
-    };
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+
+    if (!password || !confirmPassword) {
+      return null;
+    }
+
+    return password.value === confirmPassword.value ? null : { passwordsDoNotMatch: true };
+  };
 }

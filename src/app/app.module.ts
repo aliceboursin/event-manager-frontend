@@ -3,18 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import {HttpClientModule } from '@angular/common/http';
 import { SessionStorageService } from './services/session.storage.service';
-import { SignUpComponent } from './signup/signup.component';
+import { SignUpComponent } from './components/signup/signup.component';
 import { EventService } from './services/event.service';
-import { EventListComponent } from './event-list/event-list.component';
-import { EventListItemComponent } from './event-list-item/event-list-item.component';
-import {TopBarUnloggedComponent } from './top-bar-unlogged/top-bar.component-unlogged';
+import { EventListComponent } from './components/event-list/event-list.component';
+import { EventListItemComponent } from './components/event-list-item/event-list-item.component';
+import {TopBarUnloggedComponent } from './components/top-bar-unlogged/top-bar.component-unlogged';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDialogModule } from '@angular/material/dialog';
 

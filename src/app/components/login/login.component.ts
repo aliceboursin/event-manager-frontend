@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { AuthData } from '../data/authdata';
-import { SessionStorageService } from '../services/session.storage.service';
+import { AuthService } from '../../services/auth.service';
+import { AuthData } from '../../data/authdata';
+import { SessionStorageService } from '../../services/session.storage.service';
 import { MatDialogRef } from '@angular/material/dialog';
-
+import { ToastService } from '../../services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -13,7 +14,14 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class LoginComponent {
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private sessionStorageService: SessionStorageService,  public dialogRef: MatDialogRef<LoginComponent>){};
+    constructor(
+      private fb: FormBuilder,
+      private authService: AuthService, 
+      private sessionStorageService: SessionStorageService,  
+      public dialogRef: MatDialogRef<LoginComponent>,
+      private toastService: ToastService,
+      private router: Router,
+    ){};
 
     form = this.fb.group({
         username: [
@@ -49,9 +57,12 @@ export class LoginComponent {
               console.log('Login successful:', response);
               const userId = response.userId;
               this.sessionStorageService.setItem('userId', userId);
+              this.toastService.showToast("Welcome back !", "success");
+              this.goToEventsPage();
             },
             error => {
               console.error('Login failed:', error);
+              this.toastService.showToast("Username or password incorrect", "error");
             }
           );
     }
@@ -59,5 +70,9 @@ export class LoginComponent {
     
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  goToEventsPage(){
+    this.router.navigate(['/events']);
   }
 }
