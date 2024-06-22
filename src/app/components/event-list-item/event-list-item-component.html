@@ -1,12 +1,17 @@
-<div class="pt-4 p-2" *ngIf="event">
+<div class="event-item" *ngIf="event">
+  <div class="event-image">
+    <img [src]="'assets/' + event.category.name + '.jpg'" alt="{{ event.category.name }}">
+  </div>
+  <div class="event-details">
     <h3 class="title">{{ event.title }}</h3>
-    <p>{{ event.description }}</p>
-    <div>
-        <span class="badge rounded-pill text-bg-light">
-            {{ event.category.name}}
-        </span>
-        <div>{{ event.address }} , {{event.city}}</div>
-        <div>{{ event.date | date: 'MMM. d, y'  }} , {{event.time}}</div>
-        <div>Creator : {{ event.owner.username}}</div>
+    <div class="info-line">
+      <div class="badge bg-info text-white">{{ event.category.name }}</div>
+      <div class="badge badge-light">By: {{ event.owner.username }}</div>
     </div>
+    <div class="info">
+      <div>{{ event.address }} {{ event.city }}</div>
+      <div>{{ event.date }}</div>
+      <div>{{ event.time }}</div>
+    </div>
+  </div>
 </div>
