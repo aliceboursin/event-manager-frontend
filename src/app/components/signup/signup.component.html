@@ -3,11 +3,21 @@
   <main class="mt-5">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <a href="#" class="back-link" (click)="closeDialog()"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+      <h2 class="form-title">SIGN UP</h2>
       <!-- Username -->
       <div class="mb-3">
         <label for="username" class="form-label">Username:</label>
-        <input type="text" class="form-control" id="username" autocomplete="off" placeholder="Username" formControlName="username" [class.is-invalid]="username.invalid && username.touched" [class.is-valid]="username.valid && username.touched" />
-        <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+        <input 
+        type="text" 
+        class="form-control" 
+        id="username" 
+        autocomplete="off" 
+        placeholder="Username" 
+        formControlName="username" 
+        [class.is-invalid]="username.invalid && (username.touched ||isSubmitted)" 
+        [class.is-valid]="username.valid && (username.touched|| isSubmitted)" 
+        />
+        <div *ngIf="username.invalid && (username.touched ||isSubmitted)" class="invalid-feedback">
           <div *ngIf="username.errors?.['required']">Username is required</div>
         </div>
       </div>
@@ -15,8 +25,16 @@
       <!-- Password -->
       <div class="mb-3">
         <label for="password" class="form-label">Password:</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" [class.is-invalid]="password.invalid && password.touched" [class.is-valid]="password.valid && password.touched" />
-        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+        <input 
+        type="password" 
+        class="form-control" 
+        id="password" 
+        placeholder="Password" 
+        formControlName="password" 
+        [class.is-invalid]="password.invalid && (password.touched || isSubmitted)" 
+        [class.is-valid]="password.valid && (password.touched|| isSubmitted)" 
+        />
+        <div *ngIf="password.invalid && (password.touched||isSubmitted)" class="invalid-feedback">
           <div *ngIf="password.errors?.['required']">Password is required</div>
           <div *ngIf="password.errors?.['missingUpperCase']">Password should contain at least 1 upper case letter</div>
           <div *ngIf="password.errors?.['missingLowerCase']">Password should contain at least 1 lower case letter</div>
@@ -27,8 +45,16 @@
       
       <div class="mb-3">
         <label for="confirmPassword" class="form-label">Confirm Password:</label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" [class.is-valid]="confirmPassword.valid && confirmPassword.touched" />
-        <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="invalid-feedback">
+        <input 
+        type="password" 
+        class="form-control" 
+        id="confirmPassword" 
+        placeholder="Confirm Password" 
+        formControlName="confirmPassword" 
+        [class.is-invalid]="confirmPassword.invalid && (confirmPassword.touched|| isSubmitted)" 
+        [class.is-valid]="confirmPassword.valid && (confirmPassword.touched|| isSubmitted)"
+         />
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.touched ||isSubmitted)" class="invalid-feedback">
           <div *ngIf="confirmPassword.errors?.['required']">Please confirm your password</div>
         </div>
       </div>
@@ -40,9 +66,10 @@
       <div class="button-container">
         <button type="submit" class="btn btn-primary mb-2">CONFIRM</button>
       </div>
-      <div class="signup-link">
+ <!--   <div class="signup-link">
         Already registered ? <a [routerLink]="['/signup']">Login</a>
       </div>
+    -->
     </form>
   </main>
 </div>

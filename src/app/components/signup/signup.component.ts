@@ -6,6 +6,8 @@ import { AuthData } from '../../data/authdata';
 import { SessionStorageService } from '../../services/session.storage.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { ToastService } from '../../services/toast.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +17,17 @@ import { LoginComponent } from '../login/login.component';
 })
 export class SignUpComponent {
 
-    constructor(private fb: FormBuilder, private authService: AuthService, private sessionStorageService: SessionStorageService, public dialogRef: MatDialogRef<SignUpComponent>, public dialog: MatDialog){};
+    constructor(
+        private fb: FormBuilder, 
+        private authService: AuthService, 
+        private sessionStorageService: SessionStorageService, 
+        public dialogRef: MatDialogRef<SignUpComponent>, 
+        public dialog: MatDialog,
+        private toastService: ToastService,
+        private router: Router,
+    ){};
+
+    isSubmitted: boolean = false;
 
     form = this.fb.group({
         username: [
@@ -56,21 +68,32 @@ export class SignUpComponent {
     }
 
     onSubmit(){
-        const data: AuthData = {
-            username: this.form.get('username')?.value ?? '',
-            password: this.form.get('password')?.value ?? ''
-        }
-        this.authService.signup(data).subscribe(
-            response => {
-              console.log('Register successful:', response);
-              const userId = response.userId;
-              this.sessionStorageService.setItem('userId', userId);
-            },
-            error => {
-              console.error('Register failed:', error);
-
+         this.isSubmitted = true;
+        if (this.form.valid) {
+            const data: AuthData = {
+                username: this.form.get('username')?.value ?? '',
+                password: this.form.get('password')?.value ?? ''
             }
-          );
+            this.authService.signup(data).subscribe(
+                response => {
+                  console.log('Register successful:', response);
+                  const userId = response.userId;
+                  this.sessionStorageService.setItem('userId', userId);
+                  this.sessionStorageService.setItem('username', this.form.get('username')?.value ?? '');
+                  this.toastService.showToast("Register succeed!", "success");
+                  this.closeDialog();
+                  this.goToEventsPage();
+                },
+                error => {
+                  console.error('Register failed:', error);
+                  this.toastService.showToast(error.error, "error");
+                }
+              );
+        }
+        else{
+            this.toastService.showToast("Please review your information", "error");
+        }
+    
     }
 
     closeDialog(): void {
@@ -84,6 +107,12 @@ export class SignUpComponent {
           position: { right: '0' },
           panelClass: 'custom-dialog-container'
         });
+    }
+
+    goToEventsPage(){
+        this.router.navigate(['/events']);
       }
+
+
 
 }
