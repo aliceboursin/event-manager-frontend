@@ -103,10 +103,10 @@
           autocomplete="off"
           placeholder="Username"
           formControlName="username"
-          [class.is-invalid]="username.invalid && username.touched"
-          [class.is-valid]="username.valid && username.touched"
+          [class.is-invalid]="username.invalid && (username.touched || isSubmitted)"
+          [class.is-valid]="username.valid && (username.touched || isSubmitted)"
         />
-        <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+        <div *ngIf="username.invalid && (username.touched || isSubmitted)" class="invalid-feedback">
           <div *ngIf="username.errors?.['required']">Email is required</div>
         </div>
       </div>
@@ -118,10 +118,10 @@
           id="password"
           placeholder="Password"
           formControlName="password"
-          [class.is-invalid]="password.invalid && password.touched"
-          [class.is-valid]="password.valid && password.touched"
+          [class.is-invalid]="password.invalid && (password.touched || isSubmitted)"
+          [class.is-valid]="password.valid && (password.touched || isSubmitted)"
         />
-        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+        <div *ngIf="password.invalid && (password.touched || isSubmitted)" class="invalid-feedback">
           <div *ngIf="password.errors?.['required']">Password is required</div>
         </div>
       </div>
@@ -129,9 +129,10 @@
       <div class="button-container">
         <button type="submit" class="btn btn-primary mb-2">LOGIN</button>
       </div>
-      <div class="signup-link">
+  <!-- <div class="signup-link">
         New here ? <a [routerLink]="['/signup']">Sign Up</a>
       </div>
+    -->
     </form>
   </main>
 </div>
