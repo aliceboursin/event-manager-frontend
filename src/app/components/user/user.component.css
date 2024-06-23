@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap');
+
+/*
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f6fa;
+    padding: 20px;
+    font-family:  Helvetica, sans-serif;
+  }
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+}
+  
+  .user-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3%;
+    margin-top: 7%;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .username {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .user-info, .friendships {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-item, .friend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .modify-button, .delete-button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .delete-button {
+    color: #dc3545;
+  }
+  
+  h2 {
+    margin-top: 0;
+    text-align: left;
+  }
+
+  */
+ 
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.profile {
+    width: 60%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+.username {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-info, .profile-friend {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.info-box, .friend-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover {
+    text-decoration: underline;
+}
+
+.edit-btn {
+    color: blue;
+}
+
+.delete-btn {
+    color: #FF0000;
+}
+  

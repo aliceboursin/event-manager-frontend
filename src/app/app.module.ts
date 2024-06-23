@@ -20,7 +20,9 @@ import {TopBarUnloggedComponent } from './components/top-bar-unlogged/top-bar.co
 import {TopBarLoggedComponent } from './components/top-bar-logged/top-bar.component-logged';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserComponent } from './components/user/user.component';
 import {CategoryService} from "./services/category.service";
+
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
 import {UserService} from "./services/user.service";
 
@@ -36,7 +38,9 @@ import {UserService} from "./services/user.service";
     CategoryListItemComponent,
     TopBarUnloggedComponent,
     TopBarLoggedComponent,
-    EventCreationComponent
+    EventCreationComponent,
+    UserComponent,
+    TopBarLoggedComponent,
   ],
   imports: [
     BrowserModule,
