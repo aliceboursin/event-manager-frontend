@@ -7,6 +7,8 @@ import { CategoryService } from '../../services/category.service';
 import {CreateEventRequest} from '../../data/event';
 import { EventService } from '../../services/event.service';
 import Swal from 'sweetalert2';
+import {UserService} from "../../services/user.service";
+import {User} from "../../data/user";
 
 @Component({
   selector: 'app-event-creation',
@@ -17,6 +19,7 @@ export class EventCreationComponent implements OnInit {
 
   eventForm!: FormGroup;
   categories: Category[] = [];
+  ownerUser!: User;
 
   isSubmitted: boolean = false;
 
@@ -24,6 +27,7 @@ export class EventCreationComponent implements OnInit {
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private eventService: EventService,
+    private userService: UserService,
     private router: Router,
   ) { }
 
@@ -48,9 +52,12 @@ export class EventCreationComponent implements OnInit {
   onSubmit() {
     this.isSubmitted = true;
     if (this.eventForm.valid) {
+      this.userService.getUserByUsername(this.eventForm.value.owner).subscribe((ownerUser) => {
+        this.ownerUser = ownerUser;
+      });
       // The form is valid,
       // Prepare the post creation object to be sent to the backend
-      const newPost: CreateEventRequest = {
+      const newEvent: CreateEventRequest = {
         title: this.eventForm.value.title,
         city: this.eventForm.value.city,
         address: this.eventForm.value.address,
@@ -58,11 +65,11 @@ export class EventCreationComponent implements OnInit {
         time: this.eventForm.value.time,
         description: this.eventForm.value.content,
         category: this.eventForm.value.category,
-        owner: this.eventForm.value.owner,
+        owner: this.ownerUser,
       };
       // Send the post instance to the backend and subscribe to the response
       // in order to close the modal
-      this.eventService.create(newPost).subscribe((res) => {
+      this.eventService.create(newEvent).subscribe((res) => {
         const Toast = Swal.mixin({
           toast: true,
           position: "top-end",

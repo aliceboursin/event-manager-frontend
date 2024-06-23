@@ -22,6 +22,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatDialogModule } from '@angular/material/dialog';
 import {CategoryService} from "./services/category.service";
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -50,8 +51,9 @@ import { EventCreationComponent } from './components/event-creation/event-creati
     SessionStorageService,
     EventService,
     CategoryService,
-    provideAnimationsAsync()
-  ],
+    UserService,
+    provideAnimationsAsync(),
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

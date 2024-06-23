@@ -9,9 +9,9 @@
       <div class="badge badge-light">By: {{ event.owner.username }}</div>
     </div>
     <div class="info">
-      <div>{{ event.address }} {{ event.city }}</div>
-      <div>{{ event.date }}</div>
-      <div>{{ event.time }}</div>
+      <div>{{ event.address }} - {{ event.city }}</div>
+      <div>{{ event.date | date }} - {{ event.time}} </div>
+      <div></div>
     </div>
   </div>
 </div>

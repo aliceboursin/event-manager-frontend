@@ -1,5 +1,6 @@
 import { Category } from "./category";
 import { User } from "./user";
+import {Time} from "@angular/common";
 
 
 export interface Event {
@@ -8,7 +9,7 @@ export interface Event {
     city : string;
     address : string;
     date : Date;
-    time : String;
+    time : Time;
     description : String;
     category : Category;
     owner : User;
