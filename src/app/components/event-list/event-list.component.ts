@@ -5,7 +5,7 @@ import { EventService } from "../../services/event.service";
 @Component({
     selector: 'app-event-list',
     templateUrl:'./event-list.component.html',
-    styleUrls: ['./event-list.component.css'] 
+    styleUrls: ['./event-list.component.css']
 })
 
 export class EventListComponent implements OnInit {
@@ -17,7 +17,7 @@ export class EventListComponent implements OnInit {
         this.loadEvents();
     }
 
-    
+
     loadEvents(): void {
         this.eventService.getAll().subscribe((events) => { this.events = events;});
     }

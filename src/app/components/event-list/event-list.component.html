@@ -1,7 +1,13 @@
-<div class="event-list">
-  <app-event-list-item *ngFor="let event of events" [event]="event"></app-event-list-item>
-</div>
+<div class="event-page">
 
-<div *ngIf="!events || events.length === 0">
-  <p>No events available.</p>
+  <app-top-bar-logged></app-top-bar-logged>
+
+  <div class="event-list">
+    <app-event-list-item *ngFor="let event of events" [event]="event"></app-event-list-item>
+  </div>
+
+  <div *ngIf="!events || events.length === 0">
+    <p>No events available.</p>
+  </div>
+
 </div>
