@@ -21,6 +21,7 @@ import {TopBarLoggedComponent } from './components/top-bar-logged/top-bar.compon
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDialogModule } from '@angular/material/dialog';
 import {CategoryService} from "./services/category.service";
+import { EventCreationComponent } from './components/event-creation/event-creation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {CategoryService} from "./services/category.service";
     EventListItemComponent,
     CategoryListItemComponent,
     TopBarUnloggedComponent,
-    TopBarLoggedComponent
+    TopBarLoggedComponent,
+    EventCreationComponent
   ],
   imports: [
     BrowserModule,

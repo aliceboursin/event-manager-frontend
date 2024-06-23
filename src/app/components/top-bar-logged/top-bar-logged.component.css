@@ -3,41 +3,28 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  background: none;
 }
-
 
 .logo {
   font-size: 24px;
   font-weight: bold;
 }
 
-.menu button {
+.spacer {
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  margin-left: 20px;
+}
+
+.actions button {
   color: white;
-  margin: 0 10px;
+  margin: 0 20px;
   text-decoration: none;
   background: none;
   border: none;
-}
-
-.custom-dialog-container .mat-dialog-container {
-  border-radius: 0;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.clickable {
   cursor: pointer;
 }
