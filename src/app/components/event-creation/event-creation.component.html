@@ -1,0 +1,202 @@
+<app-top-bar-logged></app-top-bar-logged>
+<form
+  [formGroup]="eventForm"
+  (ngSubmit)="onSubmit()"
+  class="needs-validation"
+  autocomplete="off"
+  novalidate
+>
+  <div class="mb-3">
+    <label for="event-title" class="col-form-label">Title:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="event-title"
+      required
+      formControlName="title"
+      [class.is-invalid]="title?.invalid && (title?.touched || isSubmitted)"
+      [class.is-valid]="title?.valid && (title?.touched || isSubmitted)"
+    />
+    <div
+      *ngIf="title?.invalid && (title?.touched || isSubmitted)"
+      class="invalid-feedback text-danger"
+    >
+      <div *ngIf="title?.errors?.['required']">Title is required</div>
+      <div *ngIf="title?.errors?.['minlength']">
+        Title should be 5 characters or more
+      </div>
+      <div *ngIf="title?.errors?.['maxlength']">
+        Title should not exceed 150 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="event-city" class="col-form-label">City:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="event-city"
+      required
+      formControlName="city"
+      [class.is-invalid]="city?.invalid && (city?.touched || isSubmitted)"
+      [class.is-valid]="city?.valid && (city?.touched || isSubmitted)"
+    />
+    <div
+      *ngIf="city?.invalid && (city?.touched || isSubmitted)"
+      class="invalid-feedback text-danger"
+    >
+      <div *ngIf="city?.errors?.['required']">Title is required</div>
+      <div *ngIf="city?.errors?.['minlength']">
+        Title should be 5 characters or more
+      </div>
+      <div *ngIf="city?.errors?.['maxlength']">
+        Title should not exceed 150 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="event-category" class="col-form-label">Category:</label>
+    <select
+      class="form-select"
+      id="event-category"
+      required
+      formControlName="category"
+      aria-label="Category Selection"
+      [class.is-invalid]="category?.invalid && (category?.touched || isSubmitted)"
+      [class.is-valid]="category?.valid && (category?.touched || isSubmitted)"
+    >
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+    <div
+      *ngIf="category?.invalid && (category?.touched || isSubmitted)"
+      class="text-danger"
+    >
+      <div *ngIf="category?.errors?.['required']">Category is required</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="event-address" class="col-form-label">Address:</label>
+    <textarea
+      class="form-control"
+      id="event-address"
+      required
+      formControlName="address"
+      [class.is-invalid]="address?.invalid && (address?.touched || isSubmitted)"
+      [class.is-valid]="address?.valid && (address?.touched || isSubmitted)"
+    >
+    </textarea>
+    <div
+      *ngIf="address?.invalid && (address?.touched || isSubmitted)"
+      class="text-danger"
+    >
+      <div *ngIf="address?.errors?.['required']">Address is required</div>
+      <div *ngIf="address?.errors?.['maxlength']">
+        Event address should not exceed 2500 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="event-date" class="col-form-label">Date:</label>
+    <textarea
+      class="form-control"
+      id="event-date"
+      required
+      formControlName="date"
+      [class.is-invalid]="date?.invalid && (date?.touched || isSubmitted)"
+      [class.is-valid]="date?.valid && (date?.touched || isSubmitted)"
+    >
+    </textarea>
+    <div
+      *ngIf="date?.invalid && (date?.touched || isSubmitted)"
+      class="text-danger"
+    >
+      <div *ngIf="date?.errors?.['required']">Date is required</div>
+      <div *ngIf="date?.errors?.['maxlength']">
+        Event date should not exceed 2500 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="event-time" class="col-form-label">Time:</label>
+    <textarea
+      class="form-control"
+      id="event-time"
+      required
+      formControlName="time"
+      [class.is-invalid]="time?.invalid && (time?.touched || isSubmitted)"
+      [class.is-valid]="time?.valid && (time?.touched || isSubmitted)"
+    >
+    </textarea>
+    <div
+      *ngIf="time?.invalid && (time?.touched || isSubmitted)"
+      class="text-danger"
+    >
+      <div *ngIf="time?.errors?.['required']">Time is required</div>
+      <div *ngIf="time?.errors?.['maxlength']">
+        Event time should not exceed 2500 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="event-description" class="col-form-label">Description:</label>
+    <textarea
+      class="form-control"
+      id="event-description"
+      required
+      formControlName="description"
+      [class.is-invalid]="description?.invalid && (description?.touched || isSubmitted)"
+      [class.is-valid]="description?.valid && (description?.touched || isSubmitted)"
+    >
+    </textarea>
+    <div
+      *ngIf="description?.invalid && (description?.touched || isSubmitted)"
+      class="text-danger"
+    >
+      <div *ngIf="description?.errors?.['required']">Description is required</div>
+      <div *ngIf="description?.errors?.['maxlength']">
+        Event description should not exceed 2500 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="event-owner" class="col-form-label">Owner:</label>
+    <textarea
+      class="form-control"
+      id="event-owner"
+      required
+      formControlName="owner"
+      [class.is-invalid]="owner?.invalid && (owner?.touched || isSubmitted)"
+      [class.is-valid]="owner?.valid && (owner?.touched || isSubmitted)"
+    >
+    </textarea>
+    <div
+      *ngIf="owner?.invalid && (owner?.touched || isSubmitted)"
+      class="text-danger"
+    >
+      <div *ngIf="owner?.errors?.['required']">Owner is required</div>
+      <div *ngIf="owner?.errors?.['maxlength']">
+        Event owner should not exceed 2500 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="goToHomePage()"
+    >
+      Close
+    </button>
+    <button type="submit" class="btn btn-success">Event message</button>
+  </div>
+</form>
