@@ -11,6 +11,14 @@ export class TopBarLoggedComponent{
 
   constructor(private router: Router) { }
 
+  goToEvents() {
+    this.router.navigate(['/events']);
+  }
+
+  goToEventsCreation() {
+    this.router.navigate(['/events/creation']);
+  }
+
   goToCategories() {
     this.router.navigate(['/categories']);
   }

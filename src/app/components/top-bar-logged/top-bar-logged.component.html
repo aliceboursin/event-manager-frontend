@@ -1,7 +1,12 @@
 <div class="navbar">
   <div class="logo">EventHub</div>
-  <div class="menu">
-    <button  (click)="goToCategories()">Categories</button>
-  </div>
+  <nav class="actions">
+    <button (click)="goToEvents()">Events</button>
+    <button (click)="goToCategories()">Categories</button>
+  </nav>
+  <div class="spacer"></div>
+  <nav class="actions">
+    <button (click)="goToEventsCreation()">Create Event</button>
+    <button>My Account</button>
+  </nav>
 </div>
-

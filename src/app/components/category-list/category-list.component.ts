@@ -13,6 +13,7 @@ export class CategoryListComponent implements OnInit {
 
     constructor(private categoryService: CategoryService) {}
 
+  // Faire ca on click "par event" "par catégorie"
     ngOnInit(): void {
         this.loadCategories();
     }

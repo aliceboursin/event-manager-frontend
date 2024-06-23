@@ -23,6 +23,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserComponent } from './components/user/user.component';
 import {CategoryService} from "./services/category.service";
 
+import { EventCreationComponent } from './components/event-creation/event-creation.component';
+import {UserService} from "./services/user.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +37,8 @@ import {CategoryService} from "./services/category.service";
     EventListItemComponent,
     CategoryListItemComponent,
     TopBarUnloggedComponent,
+    TopBarLoggedComponent,
+    EventCreationComponent,
     UserComponent,
     TopBarLoggedComponent,
   ],
@@ -50,8 +55,9 @@ import {CategoryService} from "./services/category.service";
     SessionStorageService,
     EventService,
     CategoryService,
-    provideAnimationsAsync()
-  ],
+    UserService,
+    provideAnimationsAsync(),
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
