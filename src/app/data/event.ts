@@ -15,7 +15,15 @@ export interface Event {
     owner : User;
 }
 
-
-export type CreateEventRequest = Omit<Event, "id"> ;
-
 export type UpdateEventRequest= Omit<Event, "id" | "owner"> ;
+
+export interface CreateEventRequest {
+  title: string;
+  city : string;
+  address : string;
+  date : Date;
+  time : Time;
+  description : String;
+  category : Category;
+  owner : String;
+}

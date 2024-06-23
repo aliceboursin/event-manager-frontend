@@ -7,8 +7,7 @@ import { CategoryService } from '../../services/category.service';
 import {CreateEventRequest} from '../../data/event';
 import { EventService } from '../../services/event.service';
 import Swal from 'sweetalert2';
-import {UserService} from "../../services/user.service";
-import {User} from "../../data/user";
+import { SessionStorageService } from "../../services/session.storage.service";
 
 @Component({
   selector: 'app-event-creation',
@@ -19,7 +18,6 @@ export class EventCreationComponent implements OnInit {
 
   eventForm!: FormGroup;
   categories: Category[] = [];
-  ownerUser!: User;
 
   isSubmitted: boolean = false;
 
@@ -27,7 +25,7 @@ export class EventCreationComponent implements OnInit {
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private eventService: EventService,
-    private userService: UserService,
+    private sessionStorage: SessionStorageService,
     private router: Router,
   ) { }
 
@@ -45,27 +43,24 @@ export class EventCreationComponent implements OnInit {
       time: ['', [Validators.required]],
       description: ['', [Validators.required, Validators.maxLength(2500)]],
       category: ['', [Validators.required]],
-      owner: ['', [Validators.required]],
     });
   }
 
   onSubmit() {
     this.isSubmitted = true;
     if (this.eventForm.valid) {
-      this.userService.getUserByUsername(this.eventForm.value.owner).subscribe((ownerUser) => {
-        this.ownerUser = ownerUser;
-      });
-      // The form is valid,
-      // Prepare the post creation object to be sent to the backend
+      let ownerUser = sessionStorage.getItem("userId")!;
+    // The form is valid,
+    // Prepare the post creation object to be sent to the backend
       const newEvent: CreateEventRequest = {
         title: this.eventForm.value.title,
         city: this.eventForm.value.city,
         address: this.eventForm.value.address,
         date: this.eventForm.value.date,
         time: this.eventForm.value.time,
-        description: this.eventForm.value.content,
+        description: this.eventForm.value.description,
         category: this.eventForm.value.category,
-        owner: this.ownerUser,
+        owner: ownerUser,
       };
       // Send the post instance to the backend and subscribe to the response
       // in order to close the modal
