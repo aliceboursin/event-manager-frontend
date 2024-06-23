@@ -17,6 +17,7 @@ import { EventListItemComponent } from './components/event-list-item/event-list-
 import {TopBarUnloggedComponent } from './components/top-bar-unlogged/top-bar.component-unlogged';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDialogModule } from '@angular/material/dialog';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     EventListComponent,
     EventListItemComponent,
     TopBarUnloggedComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

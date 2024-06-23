@@ -1,0 +1,77 @@
+
+<!--
+  <div class="user-profile">
+    <app-top-bar-unlogged></app-top-bar-unlogged>
+    <div class = "container">
+        <div class="user-header">
+      <div class="avatar">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+      </div>
+      <div class="username">{{ username }}</div>
+    </div>
+
+
+    <h2>My information</h2>
+    <div class="user-info">
+      <div class="info-item">
+        <span>Username: {{ username }}</span>
+        <button class="modify-button" (click)="editUsername()">Edit</button>
+      </div>
+      </div>
+      <div class="user-info">
+      <div class="info-item">
+        <span>Password: ********</span>
+        <button class="modify-button" (click)="editPassword()">Edit</button>
+      </div>
+    </div>
+
+
+    <h2>Friendships</h2>
+    <div class="friendships">
+      <div class="friend-item" *ngFor="let friend of friends">
+        <span>{{ friend.name }}</span>
+        <button class="delete-button" (click)="removeFriend(friend)">Remove</button>
+      </div>
+    </div>
+    </div>
+    
+  </div>
+-->
+
+<body>
+  <div class="container">
+  <div class="profile">
+      <div class="profile-header">
+        <div class="avatar">{{ username.charAt(0).toUpperCase() }}</div>
+        <div class="username">{{ username }}</div>
+      </div>
+      <div class="profile-info">
+          <h2>My information</h2>
+          <div class="info-box">
+              <span>Username: {{ username }}</span>
+              <button class="edit-btn" (click)="editUsername()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          </div>
+          <div class="info-box">
+            <span>Password: ********</span>
+            <button class="edit-btn" (click)="editPassword()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="profile-friend">
+          <h2>My friends</h2>
+            <div class="friend-box" *ngFor="let friend of friends">
+              <span>{{ friend.name }}</span>
+              <button class="delete-btn" (click)="removeFriend(friend)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+            </div>
+          
+      </div>
+  </div>
+</div>
+
+</body>
+
+
+
+  
+    
+    
+    
