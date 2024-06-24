@@ -1,8 +1,10 @@
-<div class="category-item" *ngIf="category">
-  <div class="category-image">
-    <img [src]="'assets/' + category.name + '.jpg'" alt="{{ category.name }}">
-  </div>
-  <div class="category-details">
-    <h3 class="title">{{ category.name }}</h3>
-  </div>
-</div>
+@if (category) {
+  <a href="#" class="category-item" [routerLink]="category.id ">
+    <div class="category-image">
+      <img [src]="'assets/' + category.name + '.jpg'" alt="{{ category.name }}">
+    </div>
+    <div class="category-details">
+      <h3 class="title">{{ category.name }}</h3>
+    </div>
+  </a>
+}

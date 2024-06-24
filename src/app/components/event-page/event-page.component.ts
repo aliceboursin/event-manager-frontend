@@ -25,8 +25,10 @@ export class EventPageComponent implements OnInit {
   }
 
   getEvent(id: string): void {
+    console.log(id);
     this.eventService.getById(id).subscribe((event: Event) => {
       this.event = event;
+      console.log(this.event);
       this.eventImageUrl = "'assets/' + event.category.name + '.jpg'";
     });
   }

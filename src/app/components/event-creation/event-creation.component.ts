@@ -1,5 +1,6 @@
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import {Location } from '@angular/common'
 import { Router } from '@angular/router';
 
 import { Category } from '../../data/category';
@@ -8,6 +9,8 @@ import {CreateEventRequest} from '../../data/event';
 import { EventService } from '../../services/event.service';
 import Swal from 'sweetalert2';
 import { SessionStorageService } from "../../services/session.storage.service";
+import {catchError, Observable, of} from "rxjs";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-event-creation',
@@ -17,7 +20,7 @@ import { SessionStorageService } from "../../services/session.storage.service";
 export class EventCreationComponent implements OnInit {
 
   eventForm!: FormGroup;
-  categories: Category[] = [];
+  categories$: Observable<Category[]> | null = null;
 
   isSubmitted: boolean = false;
 
@@ -27,13 +30,12 @@ export class EventCreationComponent implements OnInit {
     private eventService: EventService,
     private sessionStorage: SessionStorageService,
     private router: Router,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
     // Get all the categories to populate the dropdown list
-    this.categoryService.getAll().subscribe((categories) => {
-      this.categories = categories;
-    });
+    this.loadCategories();
     // Create the form group with the desired validations
     this.eventForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
@@ -44,6 +46,16 @@ export class EventCreationComponent implements OnInit {
       description: ['', [Validators.required, Validators.maxLength(2500)]],
       category: ['', [Validators.required]],
     });
+  }
+
+  loadCategories(): void {
+    this.categories$ = this.categoryService.getAll()
+      .pipe(
+        catchError((error:HttpResponse<any>) => {
+          console.log(error);
+          return of([])
+        })
+      );
   }
 
   onSubmit() {
@@ -103,7 +115,7 @@ export class EventCreationComponent implements OnInit {
   }
 
   goToHomePage() {
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
   public get title(): AbstractControl | null {
