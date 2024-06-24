@@ -1,0 +1,36 @@
+<div class="event-page">
+  <app-top-bar-logged></app-top-bar-logged>
+    <div class="event-presentation">
+    <div class="event-header">
+      <div class="event-title">
+        <h1>{{ event.title }}</h1>
+        <p class="event-organizer">By {{ event.owner.username }}</p>
+      </div>
+      <div class="event-actions">
+        <button class="btn-primary">I participate</button>
+      </div>
+    </div>
+    <div class="event-details">
+      <div class="event-info">
+        <div class="event-date">
+          <i class="fas fa-calendar-alt"></i>
+          {{ event.date | date: 'fullDate' }} at {{ event.time }}
+        </div>
+        <div class="event-venue">
+          <i class="fas fa-map-marker-alt"></i>
+          {{ event.address }}
+        </div>
+        <div class="event-address">
+          <i class="fas fa-map-pin"></i>
+          {{ event.address }}
+        </div>
+        <div class="event-participants">
+          NB INTERESSE sont intéressé.e.s
+        </div>
+      </div>
+      <div class="event-image">
+        <img [src]="'assets/' + event.category.name + '.jpg'" alt="{{ event.category.name }}">
+      </div>
+    </div>
+  </div>
+</div>
