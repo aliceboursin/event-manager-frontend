@@ -5,7 +5,8 @@
   <div class="event-list">
     @if (events$ | async; as events) {
       @for (event of events; track event) {
-      <app-event-list-item *ngFor="let event of events" [event]="event"></app-event-list-item>
+        <!--Ne pas oublier de retirer le *ngFor si on fait @for :// -->
+      <app-event-list-item [event]="event"></app-event-list-item>
       }
     } @else {
       <div>
