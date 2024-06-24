@@ -11,10 +11,37 @@ import {EventPageComponent} from "./components/event-page/event-page.component";
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'account', component: UserComponent },
-  { path: 'events', component: EventListComponent },
-  { path: 'events/:id', component: EventPageComponent },
-  { path: 'categories', component: CategoryListComponent },
-  { path: 'events/creation', component: EventCreationComponent },
+  {
+    path: 'events',
+    children: [
+      {
+        path: '',
+        component: EventListComponent
+      },
+      {
+        path: 'creation',
+        component: EventCreationComponent
+      },
+      {
+        path: ':id',
+        component: EventPageComponent
+      }
+    ]
+  },
+  {
+    path: 'categories',
+    children: [
+      {
+        path: '',
+        component: CategoryListComponent
+      },
+      {
+        path: ':category',
+        component: EventListComponent
+      },
+    ]
+  },
+  // { path: 'categories', component: CategoryListComponent },
 ];
 
 @NgModule({

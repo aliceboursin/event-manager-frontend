@@ -73,9 +73,17 @@
             [class.is-invalid]="category?.invalid && (category?.touched || isSubmitted)"
             [class.is-valid]="category?.valid && (category?.touched || isSubmitted)"
           >
-            <option *ngFor="let category of categories" [value]="category.id">
-              {{ category.name }}
-            </option>
+          @if (categories$ | async; as categories) {
+            @for (category of categories; track category) {
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </option>
+            }
+          }@else {
+            <div>
+              <p>No category available.</p>
+            </div>
+          }
           </select>
           <div
             *ngIf="category?.invalid && (category?.touched || isSubmitted)"
