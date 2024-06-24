@@ -25,6 +25,7 @@ import {CategoryService} from "./services/category.service";
 
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
 import {UserService} from "./services/user.service";
+import { EventPageComponent } from './components/event-page/event-page.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {UserService} from "./services/user.service";
     EventCreationComponent,
     UserComponent,
     TopBarLoggedComponent,
+    EventPageComponent,
   ],
   imports: [
     BrowserModule,

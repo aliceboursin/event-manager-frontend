@@ -1,4 +1,4 @@
-<div class="event-item" *ngIf="event">
+<div class="event-item" *ngIf="event" (click)="goToEventPage(event.id)">
   <div class="event-image">
     <img [src]="'assets/' + event.category.name + '.jpg'" alt="{{ event.category.name }}">
   </div>
