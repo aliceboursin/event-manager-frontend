@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {EventService} from "../../services/event.service";
 import { Event } from "../../data/event";
+import {catchError, Observable, of} from "rxjs";
+import {HttpResponse} from "@angular/common/http";
+import {SessionStorageService} from "../../services/session.storage.service";
+import {Category} from "../../data/category";
+import {ToastService} from "../../services/toast.service";
 
 @Component({
   selector: 'app-event-page',
@@ -9,27 +14,62 @@ import { Event } from "../../data/event";
   styleUrls: ['./event-page.component.css']
 })
 export class EventPageComponent implements OnInit {
-  event!: Event;
-  eventImageUrl: string = '';
+  event$: Observable<Event> | null = null;
+  participants$: Observable<number> | null = null;
+  ownerUser: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private eventService: EventService
+    private toastService: ToastService,
+    private eventService: EventService,
+    private sessionStorage: SessionStorageService
   ) {}
 
   ngOnInit(): void {
     const eventId = this.route.snapshot.paramMap.get('id');
     if (eventId) {
       this.getEvent(eventId);
+      this.getCountParticipants(eventId);
     }
   }
 
   getEvent(id: string): void {
     console.log(id);
-    this.eventService.getById(id).subscribe((event: Event) => {
-      this.event = event;
-      console.log(this.event);
-      this.eventImageUrl = "'assets/' + event.category.name + '.jpg'";
-    });
+    this.event$ = this.eventService.getById(id)
+      .pipe(
+        catchError((error:HttpResponse<any>) => {
+          console.log(error);
+          return of()
+        })
+      );
+  }
+
+  getCountParticipants(id: string): void {
+    console.log("count participants");
+    this.participants$ = this.eventService.getCountParticipants(id)
+      .pipe(
+        catchError((error:HttpResponse<any>) => {
+          console.log(error);
+          return of()
+        })
+      );
+  }
+
+  addParticipation(eventId: string): void {
+    console.log("add participation");
+    this.ownerUser = sessionStorage.getItem("userId");
+    if (!this.ownerUser) {
+      console.log("no user logged")
+    } else {
+      console.log(this.ownerUser);
+      this.eventService.addParticipation(eventId, this.ownerUser)
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            this.toastService.showToast("Fail to add participation", "error");
+            return of()
+          })
+        );
+    }
   }
 }

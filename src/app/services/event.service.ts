@@ -35,8 +35,8 @@ export class EventService {
         return this.http.get<Event[]>(url);
     }
 
-    create(post: CreateEventRequest): Observable<Event> {
-        return this.http.post<Event>(this.eventUrl, post);
+    create(event: CreateEventRequest): Observable<Event> {
+        return this.http.post<Event>(this.eventUrl, event);
     }
 
     update(id: string, post: UpdateEventRequest): Observable<Event> {
@@ -44,10 +44,18 @@ export class EventService {
         return this.http.put<Event>(url, post);
     }
 
-
     deleteById(id: string): Observable<void> {
         const url = `${this.eventUrl}/${id}`;
         return this.http.delete<void>(url);
+    }
+
+    getCountParticipants(id: String) {
+      const url = `${this.eventUrl}/${id}/count`;
+      return this.http.get<number>(url);
+    }
+    addParticipation(eventId: string, userId: string) {
+      const url = `${this.eventUrl}/${eventId}/${userId}`;
+      return this.http.post<Event>(this.eventUrl, url);
     }
 
 
