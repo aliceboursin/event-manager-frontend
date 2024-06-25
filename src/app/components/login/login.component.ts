@@ -26,7 +26,6 @@ export class LoginComponent {
       private toastService: ToastService,
       private router: Router,
       public dialog: MatDialog,
-
     ){};
 
     form = this.fb.group({
@@ -75,7 +74,6 @@ export class LoginComponent {
             this.toastService.showToast("Username or password incorrect", "error");
           }
         );
-        console.log(this.sessionStorageService.getItem('userId'));
       }
       else{
         this.toastService.showToast("Please review your information", "error");

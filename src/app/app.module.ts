@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import {HttpClientModule } from '@angular/common/http';
 import { SessionStorageService } from './services/session.storage.service';
@@ -22,9 +22,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserComponent } from './components/user/user.component';
 import {CategoryService} from "./services/category.service";
+import { FriendShipService } from './services/friendship.service';
+import { UserService } from './services/user.service';
+import { AddFriendPopupComponent } from './components/add-friend-popup/add-friend-popup.component';
 
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
-import {UserService} from "./services/user.service";
 import { EventPageComponent } from './components/event-page/event-page.component';
 
 @NgModule({
@@ -42,6 +44,7 @@ import { EventPageComponent } from './components/event-page/event-page.component
     EventCreationComponent,
     UserComponent,
     TopBarLoggedComponent,
+    AddFriendPopupComponent,
     EventPageComponent,
   ],
   imports: [
@@ -51,15 +54,18 @@ import { EventPageComponent } from './components/event-page/event-page.component
     HttpClientModule,
     ReactiveFormsModule,
     MatDialogModule,
+    FormsModule,
   ],
   providers: [
     AuthService,
     SessionStorageService,
     EventService,
     CategoryService,
-    UserService,
     provideAnimationsAsync(),
-],
+    FriendShipService,
+    UserService
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
