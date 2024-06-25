@@ -1,0 +1,46 @@
+.event-page {
+  background-color: black;
+  color: white;
+}
+
+.event-detail-container {
+  min-height: 100vh;
+}
+
+.event-image {
+  width: 700px;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+h1, h2 {
+  color: #fff;
+}
+
+p {
+  color: #ccc;
+}
+
+.text-muted {
+  color: #aaa !important;
+}
+
+.text-danger {
+  color: #f00;
+}
+
+.divider {
+  border-top: 1px solid white;
+}
+
+.btn-primary {
+  background-color: darkgrey;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+

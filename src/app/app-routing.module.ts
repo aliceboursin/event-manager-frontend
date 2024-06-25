@@ -4,13 +4,44 @@ import { HomeComponent } from './components/home/home.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { UserComponent } from './components/user/user.component';
 import {CategoryListComponent} from "./components/category-list/category-list.component";
+import {EventCreationComponent} from "./components/event-creation/event-creation.component";
+import {EventPageComponent} from "./components/event-page/event-page.component";
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'account', component: UserComponent },
-  { path: 'events', component: EventListComponent },
-  { path: 'categories', component: CategoryListComponent },
+  {
+    path: 'events',
+    children: [
+      {
+        path: '',
+        component: EventListComponent
+      },
+      {
+        path: 'creation',
+        component: EventCreationComponent
+      },
+      {
+        path: ':id',
+        component: EventPageComponent
+      }
+    ]
+  },
+  {
+    path: 'categories',
+    children: [
+      {
+        path: '',
+        component: CategoryListComponent
+      },
+      {
+        path: ':category',
+        component: EventListComponent
+      },
+    ]
+  },
+  // { path: 'categories', component: CategoryListComponent },
 ];
 
 @NgModule({

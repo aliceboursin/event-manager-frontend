@@ -26,6 +26,9 @@ import { FriendShipService } from './services/friendship.service';
 import { UserService } from './services/user.service';
 import { AddFriendPopupComponent } from './components/add-friend-popup/add-friend-popup.component';
 
+import { EventCreationComponent } from './components/event-creation/event-creation.component';
+import { EventPageComponent } from './components/event-page/event-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,9 +40,12 @@ import { AddFriendPopupComponent } from './components/add-friend-popup/add-frien
     EventListItemComponent,
     CategoryListItemComponent,
     TopBarUnloggedComponent,
+    TopBarLoggedComponent,
+    EventCreationComponent,
     UserComponent,
     TopBarLoggedComponent,
     AddFriendPopupComponent,
+    EventPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +65,7 @@ import { AddFriendPopupComponent } from './components/add-friend-popup/add-frien
     FriendShipService,
     UserService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

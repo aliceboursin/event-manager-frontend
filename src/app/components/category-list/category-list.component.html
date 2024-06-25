@@ -3,11 +3,15 @@
   <app-top-bar-logged></app-top-bar-logged>
 
   <div class="category-list">
-    <app-category-list-item *ngFor="let category of categories" [category]="category"></app-category-list-item>
-  </div>
-
-  <div *ngIf="!categories || categories.length === 0">
-    <p>No categories available.</p>
+    @if (categories$ | async; as categories) {
+      @for (category of categories; track category) {
+        <app-category-list-item [category]="category"></app-category-list-item>
+      }
+    } @else {
+      <div>
+        <p>No categories available.</p>
+      </div>
+    }
   </div>
 
 </div>

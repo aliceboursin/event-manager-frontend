@@ -1,0 +1,38 @@
+<div class="event-page">
+  <app-top-bar-logged></app-top-bar-logged>
+  @if (event) {
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          @if (event.title) {
+            <h2>{{ event.title }}</h2>
+          }
+          @if (event.owner) {
+            <div class="text-muted">Par {{ event.owner.username }}</div>
+          }
+          <hr class="divider">
+          <p>
+            <i class="bi bi-calendar3"></i> Date: {{ event.date | date:"longDate" }} at
+            {{ event.time.toString().replace(',', 'h') }}
+          </p>
+          <p>
+            <i class="bi bi-geo-alt"></i> {{ event.address }}, {{ event.city }}
+          </p>
+          <button class="btn btn-primary mb-3">Participate</button>
+          <p class="text-muted">
+            <i class="bi bi-people"></i> GET PARTICIPANTS
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img [src]="'assets/' + event.category.name + '.jpg'" alt="{{ event.category.name }}" class="img-fluid event-image">
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Description</h2>
+      <hr class="divider">
+      <p>{{ event.description }}</p>
+    </div>
+  }
+</div>

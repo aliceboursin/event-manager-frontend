@@ -11,8 +11,8 @@ export class EventService {
 
     constructor(private http: HttpClient) { }
 
-        
-    getAll(title?: string): Observable<Event[]> {
+
+    getAll(title: string | null = null): Observable<Event[]> {
         let params = new HttpParams();
         if (title) {
           params = params.append('title', title);
@@ -49,6 +49,6 @@ export class EventService {
         const url = `${this.eventUrl}/${id}`;
         return this.http.delete<void>(url);
     }
-    
+
 
 }

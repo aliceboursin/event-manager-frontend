@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Category } from "../../data/category";
 import { CategoryService } from "../../services/category.service";
+import {catchError, Observable, of, tap} from "rxjs";
+import {HttpResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-category-list',
@@ -9,19 +11,24 @@ import { CategoryService } from "../../services/category.service";
 })
 
 export class CategoryListComponent implements OnInit {
-    categories: Category[] = [];
+    categories$: Observable<Category[]> | null = null;
 
-    constructor(private categoryService: CategoryService) {}
+    constructor(
+      private categoryService: CategoryService,
+      ) {}
 
     ngOnInit(): void {
         this.loadCategories();
     }
 
-
     loadCategories(): void {
-      this.categoryService.getAll().subscribe((categories) => { this.categories = categories;},      error => {
-        console.error('Error fetching categories', error);
-      });
+      this.categories$ = this.categoryService.getAll()
+        .pipe(
+          catchError((error:HttpResponse<any>) => {
+            console.log(error);
+            return of([])
+          })
+        );
     }
 
 }
