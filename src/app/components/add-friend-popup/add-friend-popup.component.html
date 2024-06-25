@@ -1,0 +1,25 @@
+<div class="container">
+  <main class="mt-5">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h2 class="form-title">Add Friend</h2>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="friendUserId"
+          autocomplete="off"
+          placeholder="Friend's User ID"
+          formControlName="friendUserId"
+          [class.is-invalid]="isSubmitted && friendUserIdControl.invalid"
+        />
+        <div *ngIf="isSubmitted && friendUserIdControl.invalid" class="invalid-feedback">
+          User ID is required
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn btn-primary mb-2">Add Friend</button>
+      </div>
+    </form>
+  </main>
+</div>
