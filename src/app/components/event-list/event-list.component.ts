@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Event } from "../../data/event";
 import { EventService } from "../../services/event.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {catchError, map, Observable, of} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 
 @Component({
@@ -13,7 +13,6 @@ import {HttpResponse} from "@angular/common/http";
 
 export class EventListComponent implements OnInit {
     events$: Observable<Event[]> | null = null;
-    cities$: Observable<string[]> | null = null;
 
     constructor(
       private eventService: EventService,
@@ -32,14 +31,8 @@ export class EventListComponent implements OnInit {
       } else if (this.router.url === '/events/upcoming-events') {
         console.log("upcoming events");
         this.loadUpcomingEvents();
-      } if (this.route.snapshot.params.hasOwnProperty('city')) {
-        console.log("by city");
-        this.loadEventsByCity(this.route.snapshot.params['city']);
       } else {
         this.loadEvents();
-      }
-      if (this.events$) {
-        this.cities$ = this.getAllCities();
       }
     }
 
@@ -84,35 +77,13 @@ export class EventListComponent implements OnInit {
         );
     }
 
-    loadEventsByCity(city: string) {
-      this.events$ = this.getEventsByCity(city);
-    }
-
   goToPassedEvents() {
     this.router.navigate(['events/passed-events']);
   }
 
+
   goToUpcomingEvents() {
     this.router.navigate(['events/upcoming-events']);
-  }
-
-  getAllCities(): Observable<string[]> | null {
-    if (!this.events$) return null;
-
-    return this.events$.pipe(
-      map((events: Event[]) => {
-        const cities = events.map(event => event.city);
-        return Array.from(new Set(cities));
-      })
-    );
-  }
-
-  getEventsByCity(city: string): Observable<Event[]> | null {
-    if (!this.events$) return null;
-
-    return this.events$.pipe(
-      map((events: Event[]) => events.filter(event => event.city === city))
-    );
   }
 
 }

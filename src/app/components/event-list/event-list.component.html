@@ -1,14 +1,6 @@
 <div class="event-page">
 
   <app-top-bar-logged></app-top-bar-logged>
-  @if (cities$ | async; as cities) {
-    <p>All cities :
-      @for (city of cities; track city) {
-        <button (click)="loadEventsByCity(city)">{{ city }}</button>
-      }
-    </p>
-  }
-
   <button (click)="goToPassedEvents()">Passed events</button>
   <button (click)="goToUpcomingEvents()">Upcoming events</button>
   <div class="event-list">
