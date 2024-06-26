@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import {Router} from "@angular/router";
+import { SessionStorageService } from "../../services/session.storage.service";
 
 @Component({
     selector : 'app-top-bar-logged',
@@ -9,7 +10,11 @@ import {Router} from "@angular/router";
 })
 export class TopBarLoggedComponent{
 
-  constructor(private router: Router) { }
+  username: string = "";
+
+  constructor(private router: Router, private sessionStorageService: SessionStorageService) {
+    this.username = this.sessionStorageService.getItem('username') || "";
+  }
 
   goToEvents() {
     this.router.navigate(['/events']);
@@ -23,8 +28,17 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/categories']);
   }
 
-  goToAccount() {
+  goToMyAccount() {
     this.router.navigate(['/account']);
+  }
+
+  goToMyEvents() {
+    this.router.navigate(['/my-events']);
+  }
+
+  logout() {
+    this.sessionStorageService.clear();
+    this.router.navigate(['/']);
   }
 
 }
