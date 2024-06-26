@@ -1,7 +1,8 @@
 <div class="event-page">
 
   <app-top-bar-logged></app-top-bar-logged>
-
+  <button (click)="goToPassedEvents()">Passed events</button>
+  <button (click)="goToUpcomingEvents()">Upcoming events</button>
   <div class="event-list">
     @if (events$ | async; as events) {
       @for (event of events; track event) {

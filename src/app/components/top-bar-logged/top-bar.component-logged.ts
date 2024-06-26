@@ -23,4 +23,8 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/categories']);
   }
 
+  goToAccount() {
+    this.router.navigate(['/account']);
+  }
+
 }

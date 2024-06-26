@@ -62,14 +62,8 @@ export class EventPageComponent implements OnInit {
       console.log("no user logged")
     } else {
       console.log(this.ownerUser);
-      this.eventService.addParticipation(eventId, this.ownerUser)
-        .pipe(
-          catchError((error: HttpResponse<any>) => {
-            console.log(error);
-            this.toastService.showToast("Fail to add participation", "error");
-            return of()
-          })
-        );
+      this.eventService.addParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
+      this.getCountParticipants(eventId);
     }
   }
 }

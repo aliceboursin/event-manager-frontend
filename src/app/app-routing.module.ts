@@ -23,6 +23,14 @@ const routes: Routes = [
         component: EventCreationComponent
       },
       {
+        path: 'passed-events',
+        component: EventListComponent
+      },
+      {
+        path: 'upcoming-events',
+        component: EventListComponent
+      },
+      {
         path: ':id',
         component: EventPageComponent
       }

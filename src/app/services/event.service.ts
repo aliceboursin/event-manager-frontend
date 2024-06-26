@@ -53,10 +53,24 @@ export class EventService {
       const url = `${this.eventUrl}/${id}/count`;
       return this.http.get<number>(url);
     }
-    addParticipation(eventId: string, userId: string) {
+
+    addParticipation(eventId: string, userId: string): Observable<void>  {
+      console.log(eventId);
+      console.log(userId);
       const url = `${this.eventUrl}/${eventId}/${userId}`;
-      return this.http.post<Event>(this.eventUrl, url);
+      return this.http.post<void>(url, {});
     }
 
+    getPassedEvents(): Observable<Event[]> {
+      console.log("passed events");
+      const url = `${this.eventUrl}/past-events`;
+      return this.http.get<Event[]>(url);
+    }
+
+    getUpcomingEvents(): Observable<Event[]> {
+      console.log("upcoming events");
+      const url = `${this.eventUrl}/upcoming-events`;
+      return this.http.get<Event[]>(url);
+    }
 
 }
