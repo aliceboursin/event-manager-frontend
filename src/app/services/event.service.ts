@@ -49,6 +49,7 @@ export class EventService {
         return this.http.delete<void>(url);
     }
 
+
     getCountParticipants(id: String) {
       const url = `${this.eventUrl}/${id}/count`;
       return this.http.get<number>(url);
@@ -72,5 +73,15 @@ export class EventService {
       const url = `${this.eventUrl}/upcoming-events`;
       return this.http.get<Event[]>(url);
     }
+
+    search(query: string): Observable<Event[]> {
+        let params = new HttpParams();
+        if (query) {
+          params = params.append('search', query);
+        }
+        return this.http.get<Event[]>(`${this.eventUrl}/search`, { params });
+      }
+
+
 
 }

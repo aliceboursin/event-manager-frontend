@@ -1,0 +1,13 @@
+<div class="search-page">
+  <input type="text" placeholder="Search" [(ngModel)]="query" (ngModelChange)="onSearch($event)">
+  <div class="event-list">
+    <div *ngFor="let event of filteredEvents">
+      <app-event-list-item [event]="event"></app-event-list-item>
+    </div>
+    <div *ngIf="!filteredEvents || filteredEvents.length === 0">
+      <p>There is no event corresponding to your search.</p>
+    </div>
+  </div>
+</div>
+
+  

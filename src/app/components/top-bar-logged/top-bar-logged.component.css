@@ -20,6 +20,11 @@
   margin-left: 20px;
 }
 
+.exploreBy{
+  font-size: 18px;
+  font-weight: normal;
+}
+
 .actions button {
   color: white;
   margin: 0 20px;
@@ -47,3 +52,25 @@
 .red-text {
   color: red;
 }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #333; /* Couleur de fond de la barre de recherche */
+  border-radius: 4px;
+  padding: 0 8px;
+  margin-right: 16px;
+}
+
+.search-bar input {
+  border: none;
+  background: none;
+  color: #fff;
+  padding: 8px;
+  outline: none;
+}
+
+.search-bar mat-icon {
+  color: #fff;
+}
+

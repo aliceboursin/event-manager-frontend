@@ -2,8 +2,11 @@
 
   <nav class="actions">
     <button class="logo" (click)="goToEvents()">EventHub</button>
+    
+      <button (click)="navigateToSearch()"><i class="fa fa-search"></i></button>
+   
     <button mat-button [matMenuTriggerFor]="exploreBy">
-      <div >Explore By  <i class="fa fa-angle-down" aria-hidden="true"></i></div>
+      <div class="exploreBy">Explore By  <i class="fa fa-angle-down" aria-hidden="true"></i></div>
     </button>
     <mat-menu #exploreBy="matMenu">
       <button mat-menu-item (click)="goToCategories()">Categories</button>

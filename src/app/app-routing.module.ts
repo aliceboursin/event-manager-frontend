@@ -6,11 +6,13 @@ import { UserComponent } from './components/user/user.component';
 import {CategoryListComponent} from "./components/category-list/category-list.component";
 import {EventCreationComponent} from "./components/event-creation/event-creation.component";
 import {EventPageComponent} from "./components/event-page/event-page.component";
+import { SearchPageComponent } from './components/search/search-page.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'account', component: UserComponent },
+  { path: 'search', component: SearchPageComponent },
   {
     path: 'events',
     children: [

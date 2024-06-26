@@ -45,4 +45,7 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/']);
   }
 
+  navigateToSearch(): void {
+    this.router.navigate(['/search']);
+  }
 }

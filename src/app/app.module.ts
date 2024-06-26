@@ -22,6 +22,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { UserComponent } from './components/user/user.component';
 import {CategoryService} from "./services/category.service";
 import { FriendShipService } from './services/friendship.service';
@@ -30,6 +32,7 @@ import { AddFriendPopupComponent } from './components/add-friend-popup/add-frien
 
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
 import { EventPageComponent } from './components/event-page/event-page.component';
+import { SearchPageComponent } from './components/search/search-page.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { EventPageComponent } from './components/event-page/event-page.component
     TopBarLoggedComponent,
     AddFriendPopupComponent,
     EventPageComponent,
+    SearchPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +63,8 @@ import { EventPageComponent } from './components/event-page/event-page.component
     FormsModule,
     MatMenuModule,
     MatButtonModule,
+    MatInputModule,
+    MatIconModule,
   ],
   providers: [
     AuthService,
