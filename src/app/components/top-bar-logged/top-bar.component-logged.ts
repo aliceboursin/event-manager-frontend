@@ -10,9 +10,9 @@ import { SessionStorageService } from "../../services/session.storage.service";
 })
 export class TopBarLoggedComponent{
 
-  username: string = ""; 
+  username: string = "";
 
-  constructor(private router: Router, private sessionStorageService: SessionStorageService) { 
+  constructor(private router: Router, private sessionStorageService: SessionStorageService) {
     this.username = this.sessionStorageService.getItem('username') || "";
   }
 

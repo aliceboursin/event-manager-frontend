@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Event } from "../../data/event";
 import { EventService } from "../../services/event.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {catchError, Observable, of} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 
@@ -17,6 +17,7 @@ export class EventListComponent implements OnInit {
     constructor(
       private eventService: EventService,
       private route: ActivatedRoute,
+      private router: Router,
     ) {}
 
     ngOnInit(): void {
@@ -24,6 +25,12 @@ export class EventListComponent implements OnInit {
       if (this.route.snapshot.params.hasOwnProperty('category')) {
         console.log(this.route.snapshot.params['category']);
         this.loadEventPerCategory(this.route.snapshot.params['category']);
+      } else if (this.router.url === '/events/passed-events') {
+        console.log("passed events");
+        this.loadPassedEvents();
+      } else if (this.router.url === '/events/upcoming-events') {
+        console.log("upcoming events");
+        this.loadUpcomingEvents();
       } else {
         this.loadEvents();
       }
@@ -49,5 +56,34 @@ export class EventListComponent implements OnInit {
           })
         );
     }
+
+    loadPassedEvents() {
+      this.events$ = this.eventService.getPassedEvents()
+        .pipe(
+          catchError((error:HttpResponse<any>) => {
+            console.log(error);
+            return of([])
+          })
+        );
+    }
+
+    loadUpcomingEvents() {
+      this.events$ = this.eventService.getUpcomingEvents()
+        .pipe(
+          catchError((error:HttpResponse<any>) => {
+            console.log(error);
+            return of([])
+          })
+        );
+    }
+
+  goToPassedEvents() {
+    this.router.navigate(['events/passed-events']);
+  }
+
+
+  goToUpcomingEvents() {
+    this.router.navigate(['events/upcoming-events']);
+  }
 
 }

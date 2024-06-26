@@ -35,8 +35,8 @@ export class EventService {
         return this.http.get<Event[]>(url);
     }
 
-    create(post: CreateEventRequest): Observable<Event> {
-        return this.http.post<Event>(this.eventUrl, post);
+    create(event: CreateEventRequest): Observable<Event> {
+        return this.http.post<Event>(this.eventUrl, event);
     }
 
     update(id: string, post: UpdateEventRequest): Observable<Event> {
@@ -44,11 +44,33 @@ export class EventService {
         return this.http.put<Event>(url, post);
     }
 
-
     deleteById(id: string): Observable<void> {
         const url = `${this.eventUrl}/${id}`;
         return this.http.delete<void>(url);
     }
 
+    getCountParticipants(id: String) {
+      const url = `${this.eventUrl}/${id}/count`;
+      return this.http.get<number>(url);
+    }
+
+    addParticipation(eventId: string, userId: string): Observable<void>  {
+      console.log(eventId);
+      console.log(userId);
+      const url = `${this.eventUrl}/${eventId}/${userId}`;
+      return this.http.post<void>(url, {});
+    }
+
+    getPassedEvents(): Observable<Event[]> {
+      console.log("passed events");
+      const url = `${this.eventUrl}/past-events`;
+      return this.http.get<Event[]>(url);
+    }
+
+    getUpcomingEvents(): Observable<Event[]> {
+      console.log("upcoming events");
+      const url = `${this.eventUrl}/upcoming-events`;
+      return this.http.get<Event[]>(url);
+    }
 
 }

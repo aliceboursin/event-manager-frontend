@@ -1,6 +1,6 @@
 <div class="event-page">
   <app-top-bar-logged></app-top-bar-logged>
-  @if (event) {
+  @if (event$ | async; as event) {
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-6">
@@ -8,7 +8,7 @@
             <h2>{{ event.title }}</h2>
           }
           @if (event.owner) {
-            <div class="text-muted">Par {{ event.owner.username }}</div>
+            <div class="text-muted">By {{ event.owner.username }}</div>
           }
           <hr class="divider">
           <p>
@@ -18,9 +18,14 @@
           <p>
             <i class="bi bi-geo-alt"></i> {{ event.address }}, {{ event.city }}
           </p>
-          <button class="btn btn-primary mb-3">Participate</button>
+          <button class="btn btn-primary mb-3" (click)="addParticipation(event.id)">Participate</button>
           <p class="text-muted">
-            <i class="bi bi-people"></i> GET PARTICIPANTS
+            <i class="bi bi-people"></i>
+            @if (participants$ | async; as participants) {
+              {{ participants.valueOf() }}
+            } @else {
+              Could not find participants
+            }
           </p>
         </div>
         <div class="col-md-6">
