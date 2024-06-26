@@ -7,6 +7,13 @@
   <div class="spacer"></div>
   <nav class="actions">
     <button (click)="goToEventsCreation()">Create Event</button>
-    <button>My Account</button>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <div class="avatar">{{ username.charAt(0).toUpperCase() }}</div>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="goToMyAccount()">My Account</button>
+      <button mat-menu-item (click)="goToMyEvents()">My events</button>
+      <button mat-menu-item (click)="logout()" class="red-text">Log out</button>
+    </mat-menu>
   </nav>
 </div>

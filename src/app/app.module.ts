@@ -20,6 +20,8 @@ import {TopBarUnloggedComponent } from './components/top-bar-unlogged/top-bar.co
 import {TopBarLoggedComponent } from './components/top-bar-logged/top-bar.component-logged';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 import { UserComponent } from './components/user/user.component';
 import {CategoryService} from "./services/category.service";
 import { FriendShipService } from './services/friendship.service';
@@ -55,6 +57,8 @@ import { EventPageComponent } from './components/event-page/event-page.component
     ReactiveFormsModule,
     MatDialogModule,
     FormsModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   providers: [
     AuthService,

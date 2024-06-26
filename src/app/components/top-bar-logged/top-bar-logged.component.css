@@ -28,3 +28,21 @@
   border: none;
   cursor: pointer;
 }
+
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
+
+.red-text {
+  color: red;
+}
