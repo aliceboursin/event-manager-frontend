@@ -33,6 +33,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: EventPageComponent
+      },
+      {
+        path: ':city',
+        component: EventListComponent
       }
     ]
   },
