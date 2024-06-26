@@ -36,6 +36,10 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/my-events']);
   }
 
+  goToMyFriendsEvents() {
+    this.router.navigate(['/my-friends-events']);
+  }
+
   logout() {
     this.sessionStorageService.clear();
     this.router.navigate(['/']);

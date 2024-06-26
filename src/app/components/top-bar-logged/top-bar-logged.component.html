@@ -1,8 +1,14 @@
 <div class="navbar">
-  <button (click)="goToEvents()" class="logo">EventHub</button>
+
   <nav class="actions">
-    <button (click)="goToEvents()">Events</button>
-    <button (click)="goToCategories()">Categories</button>
+    <button class="logo" (click)="goToEvents()">EventHub</button>
+    <button mat-button [matMenuTriggerFor]="exploreBy">
+      <div >Explore By  <i class="fa fa-angle-down" aria-hidden="true"></i></div>
+    </button>
+    <mat-menu #exploreBy="matMenu">
+      <button mat-menu-item (click)="goToCategories()">Categories</button>
+      <button mat-menu-item (click)="goToMyFriendsEvents()">Friends</button>
+    </mat-menu>
   </nav>
   <div class="spacer"></div>
   <nav class="actions">
@@ -12,8 +18,8 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="goToMyAccount()">My Account</button>
-      <button mat-menu-item (click)="goToMyEvents()">My events</button>
-      <button mat-menu-item (click)="logout()" class="red-text">Log out</button>
+      <button mat-menu-item (click)="goToMyEvents()">My Events</button>
+      <button mat-menu-item (click)="logout()" class="red-text">Log Out</button>
     </mat-menu>
   </nav>
 </div>
