@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { Event } from "../../data/event";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-search-page',
@@ -13,7 +14,7 @@ export class SearchPageComponent implements OnInit {
   allEvents: Event[] = [];
   filteredEvents: Event[] = [];
 
-  constructor(private eventService: EventService) {}
+  constructor(private eventService: EventService, private location: Location) {}
 
   ngOnInit(): void {
     this.eventService.getAll().subscribe((events: Event[]) => {
@@ -31,5 +32,9 @@ export class SearchPageComponent implements OnInit {
       event.owner.username.toLowerCase().includes(this.query) ||
       event.description.toLowerCase().includes(this.query)
     );
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

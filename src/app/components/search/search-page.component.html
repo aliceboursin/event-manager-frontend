@@ -1,5 +1,9 @@
 <div class="search-page">
-  <input type="text" placeholder="Search" [(ngModel)]="query" (ngModelChange)="onSearch($event)">
+  <app-top-bar-logged></app-top-bar-logged>
+  <div class="search-container">
+    <button class="back-button" (click)="goBack()"><i class="fa fa-arrow-left"></i></button>
+    <input type="text" placeholder="Search for an event title, city, organizer, or description element" [(ngModel)]="query" (ngModelChange)="onSearch($event)">
+  </div>
   <div class="event-list">
     <div *ngFor="let event of filteredEvents">
       <app-event-list-item [event]="event"></app-event-list-item>

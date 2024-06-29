@@ -15,10 +15,15 @@
   box-sizing: border-box; /* Ensure padding and borders are included in the width */
   padding-left: 10%;
   padding-right: 10%;
-  padding-top: 3%;
   padding-bottom: 5%;
 }
 
 .event-item {
   max-width: 500px;
+}
+
+.event-page h2 {
+  padding-left: 10%;
+  padding-top: 3%;
+  font-size: 50px;
 }

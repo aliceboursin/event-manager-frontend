@@ -13,6 +13,7 @@ import {HttpResponse} from "@angular/common/http";
 
 export class EventListComponent implements OnInit {
     events$: Observable<Event[]> | null = null;
+    title: String = "";
 
     constructor(
       private eventService: EventService,
@@ -25,13 +26,17 @@ export class EventListComponent implements OnInit {
       if (this.route.snapshot.params.hasOwnProperty('category')) {
         console.log(this.route.snapshot.params['category']);
         this.loadEventPerCategory(this.route.snapshot.params['category']);
+        this.title = "Explore By Categories";
       } else if (this.router.url === '/events/passed-events') {
+        this.title = "Passed Events";
         console.log("passed events");
         this.loadPassedEvents();
       } else if (this.router.url === '/events/upcoming-events') {
+        this.title = "Upcomming Events";
         console.log("upcoming events");
         this.loadUpcomingEvents();
       } else {
+        this.title = "All Events";
         this.loadEvents();
       }
     }
@@ -77,13 +82,6 @@ export class EventListComponent implements OnInit {
         );
     }
 
-  goToPassedEvents() {
-    this.router.navigate(['events/passed-events']);
-  }
 
-
-  goToUpcomingEvents() {
-    this.router.navigate(['events/upcoming-events']);
-  }
 
 }
