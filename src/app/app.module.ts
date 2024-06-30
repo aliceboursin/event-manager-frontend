@@ -29,10 +29,17 @@ import {CategoryService} from "./services/category.service";
 import { FriendShipService } from './services/friendship.service';
 import { UserService } from './services/user.service';
 import { AddFriendPopupComponent } from './components/add-friend-popup/add-friend-popup.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
 import { EventPageComponent } from './components/event-page/event-page.component';
 import { SearchPageComponent } from './components/search/search-page.component';
+import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +59,7 @@ import { SearchPageComponent } from './components/search/search-page.component';
     AddFriendPopupComponent,
     EventPageComponent,
     SearchPageComponent,
+    FilterBarComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +73,12 @@ import { SearchPageComponent } from './components/search/search-page.component';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatExpansionModule,
   ],
   providers: [
     AuthService,
@@ -73,7 +87,8 @@ import { SearchPageComponent } from './components/search/search-page.component';
     CategoryService,
     provideAnimationsAsync(),
     FriendShipService,
-    UserService
+    UserService,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
 
   bootstrap: [AppComponent]

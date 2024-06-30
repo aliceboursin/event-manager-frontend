@@ -1,19 +1,17 @@
 <div class="event-page">
-
   <app-top-bar-logged></app-top-bar-logged>
- 
-  <h2>{{title}}</h2>
-  <div class="event-list">
-    @if (events$ | async; as events) {
-      @for (event of events; track event) {
-        <!--Ne pas oublier de retirer le *ngFor si on fait @for :// -->
-      <app-event-list-item [event]="event" class="event-item"></app-event-list-item>
-      }
-    } @else {
-      <div>
-        <p>No events available.</p>
-      </div>
-    }
-  </div>
 
+  <h2>{{title}}</h2>
+
+  <app-filter-bar (filtersApplied)="onFiltersApplied($event)"></app-filter-bar>
+
+  <div class="event-list">
+    <div *ngFor="let event of filteredEvents">
+      <app-event-list-item [event]="event" class="event-item"></app-event-list-item>
+    </div>
+    <div *ngIf="!filteredEvents || filteredEvents.length === 0">
+      <p>No events available.</p>
+    </div>
+  </div>
 </div>
+

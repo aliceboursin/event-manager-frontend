@@ -1,0 +1,83 @@
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-top: 3%;
+  color: white;
+  font-size: 14px;
+}
+
+.filter-item {
+  margin-right: 10px;
+  flex: 1;
+}
+
+.filter-bar .dropdown-toggle {
+  font-size: 14px; 
+}
+
+.filter-bar .mat-form-field {
+  font-size: 14px; 
+}
+
+.filter-bar .btn {
+  font-size: 14px; 
+}
+
+
+.filter-item .mat-mdc-text-field-wrapper {
+  background-color: black;
+  background: black !important;
+  border: 1px solid #333;
+  color: white;
+}
+
+.filter-item .mdc-text-field__input {
+  color: white;
+}
+
+.filter-item .mdc-floating-label {
+  color: white;
+}
+
+.filter-item .mdc-line-ripple {
+  background-color: white;
+}
+
+.filter-item .mat-mdc-form-field-flex {
+  background-color: black;
+}
+
+.apply-reset {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.apply-button {
+  margin-right: 10px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  text-transform: uppercase;
+}
+
+.apply-button:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.reset-button {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  text-transform: uppercase;
+}
+
+.reset-button:hover {
+  background-color: #333;
+  border-color: #333;
+}
