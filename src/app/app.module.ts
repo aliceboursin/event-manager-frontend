@@ -14,8 +14,10 @@ import { SignUpComponent } from './components/signup/signup.component';
 import { EventService } from './services/event.service';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CityListComponent } from './components/city-list/city-list.component';
 import { EventListItemComponent } from './components/event-list-item/event-list-item.component';
 import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
+import { CityListItemComponent } from './components/city-list-item/city-list-item.component';
 import {TopBarUnloggedComponent } from './components/top-bar-unlogged/top-bar.component-unlogged';
 import {TopBarLoggedComponent } from './components/top-bar-logged/top-bar.component-logged';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -40,7 +42,6 @@ import { EventPageComponent } from './components/event-page/event-page.component
 import { SearchPageComponent } from './components/search/search-page.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,8 +50,10 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
     SignUpComponent,
     EventListComponent,
     CategoryListComponent,
+    CityListComponent,
     EventListItemComponent,
     CategoryListItemComponent,
+    CityListItemComponent,
     TopBarUnloggedComponent,
     TopBarLoggedComponent,
     EventCreationComponent,

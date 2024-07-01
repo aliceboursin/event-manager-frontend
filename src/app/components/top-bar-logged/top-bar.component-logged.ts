@@ -28,6 +28,12 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/categories']);
   }
 
+
+  goToCities() {
+    this.router.navigate(['/cities']);
+  }
+
+
   goToMyAccount() {
     this.router.navigate(['/account']);
   }
@@ -58,7 +64,7 @@ export class TopBarLoggedComponent{
   }
 
   get isAccountPage(): boolean {
-    return this.router.url === '/account'; 
+    return this.router.url === '/account';
   }
 
   get navbarClass(): string {

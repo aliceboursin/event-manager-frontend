@@ -72,9 +72,22 @@ export class EventService {
       return this.http.get<Event[]>(url);
     }
 
+    search(query: string): Observable<Event[]> {
+        let params = new HttpParams();
+        if (query) {
+          params = params.append('search', query);
+        }
+        return this.http.get<Event[]>(`${this.eventUrl}/search`, { params });
+      }
+
     getAllCities(): Observable<string[]> {
-      const url = `${this.eventUrl}/cities`;
-      return this.http.get<string[]>(url);
+       const url = `${this.eventUrl}/cities`;
+       return this.http.get<string[]>(url);
+    }
+
+    getEventsByCity(city: string): Observable<Event[]> {
+      const url = `${this.eventUrl}/cities/${city}`;
+      return this.http.get<Event[]>(url);
     }
 
     

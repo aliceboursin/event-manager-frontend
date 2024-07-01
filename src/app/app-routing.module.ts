@@ -7,6 +7,7 @@ import {CategoryListComponent} from "./components/category-list/category-list.co
 import {EventCreationComponent} from "./components/event-creation/event-creation.component";
 import {EventPageComponent} from "./components/event-page/event-page.component";
 import { SearchPageComponent } from './components/search/search-page.component';
+import {CityListComponent} from "./components/city-list/city-list.component";
 
 
 const routes: Routes = [
@@ -47,6 +48,19 @@ const routes: Routes = [
       },
       {
         path: ':category',
+        component: EventListComponent
+      },
+    ]
+  },
+  {
+    path: 'cities',
+    children: [
+      {
+        path: '',
+        component: CityListComponent
+      },
+      {
+        path: ':city',
         component: EventListComponent
       },
     ]
