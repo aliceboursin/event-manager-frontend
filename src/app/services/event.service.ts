@@ -82,10 +82,9 @@ export class EventService {
         return this.http.get<Event[]>(`${this.eventUrl}/search`, { params });
       }
 
-      getAllCities(): Observable<string[]> {
-        const url = `${this.eventUrl}/cities`;
-        return this.http.get<string[]>(url);
-      
-      }
+    getAllCities(): Observable<string[]> {
+       const url = `${this.eventUrl}/cities`;
+       return this.http.get<string[]>(url);
+    }
 
 }

@@ -1,0 +1,17 @@
+<div class="category-page">
+
+  <app-top-bar-logged></app-top-bar-logged>
+
+  <div class="category-list">
+    @if (cities$ ! | async; as cities) {
+      @for (city of cities; track city) {
+        <app-city-list-item [city]="city"></app-city-list-item>
+      }
+    } @else {
+      <div>
+        <p>No city available.</p>
+      </div>
+    }
+  </div>
+
+</div>
