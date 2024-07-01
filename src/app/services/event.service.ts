@@ -8,96 +8,108 @@ import {CreateReviewRequest, Review} from "../data/review";
 
 @Injectable()
 export class EventService {
-    private eventUrl = environment.apiUrl + 'events';
+  private eventUrl = environment.apiUrl + 'events';
 
-    constructor(private http: HttpClient) { }
-
-
-    getAll(title: string | null = null): Observable<Event[]> {
-        let params = new HttpParams();
-        if (title) {
-          params = params.append('title', title);
-        }
-        return this.http.get<Event[]>(this.eventUrl, { params });
-    }
-
-    getAllSortedByDate(): Observable<Event[]> {
-        const url = `${this.eventUrl}/sorted-by-date`;
-        return this.http.get<Event[]>(url);
-    }
-
-    getById(id: string): Observable<Event> {
-        const url = `${this.eventUrl}/${id}`;
-        return this.http.get<Event>(url);
-    }
-
-    getByCategoryId(categoryId: string): Observable<Event[]> {
-        const url = `${this.eventUrl}/category/${categoryId}`;
-        return this.http.get<Event[]>(url);
-    }
-
-    create(event: CreateEventRequest): Observable<Event> {
-        return this.http.post<Event>(this.eventUrl, event);
-    }
-
-    update(id: string, post: UpdateEventRequest): Observable<Event> {
-        const url = `${this.eventUrl}/${id}`;
-        return this.http.put<Event>(url, post);
-    }
-
-    deleteById(id: string): Observable<void> {
-        const url = `${this.eventUrl}/${id}`;
-        return this.http.delete<void>(url);
-    }
-
-
-    getCountParticipants(id: String) {
-      const url = `${this.eventUrl}/${id}/count`;
-      return this.http.get<number>(url);
-    }
-
-    addParticipation(eventId: string, userId: string): Observable<void>  {
-      console.log(eventId);
-      console.log(userId);
-      const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
-      return this.http.post<void>(url, {});
-    }
-
-    getPassedEvents(): Observable<Event[]> {
-      console.log("passed events");
-      const url = `${this.eventUrl}/past-events`;
-      return this.http.get<Event[]>(url);
-    }
-
-    getUpcomingEvents(): Observable<Event[]> {
-      console.log("upcoming events");
-      const url = `${this.eventUrl}/upcoming-events`;
-      return this.http.get<Event[]>(url);
-    }
-
-    search(query: string): Observable<Event[]> {
-        let params = new HttpParams();
-        if (query) {
-          params = params.append('search', query);
-        }
-        return this.http.get<Event[]>(`${this.eventUrl}/search`, { params });
-      }
-
-    getAllCities(): Observable<string[]> {
-       const url = `${this.eventUrl}/cities`;
-       return this.http.get<string[]>(url);
-    }
-
-    getEventsByCity(city: string): Observable<Event[]> {
-      const url = `${this.eventUrl}/cities/${city}`;
-      return this.http.get<Event[]>(url);
-    }
-
-    createReview(eventId: string, review: CreateReviewRequest): Observable<Review> {
-      console.log(review);
-      const url = `${this.eventUrl}/${eventId}/reviews`;
-      console.log(url);
-      return this.http.post<Review>(url, review);
+  constructor(private http: HttpClient) {
   }
 
+
+  getAll(title: string | null = null): Observable<Event[]> {
+    let params = new HttpParams();
+    if (title) {
+      params = params.append('title', title);
+    }
+    return this.http.get<Event[]>(this.eventUrl, {params});
+  }
+
+  getAllSortedByDate(): Observable<Event[]> {
+    const url = `${this.eventUrl}/sorted-by-date`;
+    return this.http.get<Event[]>(url);
+  }
+
+  getById(id: string): Observable<Event> {
+    const url = `${this.eventUrl}/${id}`;
+    return this.http.get<Event>(url);
+  }
+
+  getByCategoryId(categoryId: string): Observable<Event[]> {
+    const url = `${this.eventUrl}/category/${categoryId}`;
+    return this.http.get<Event[]>(url);
+  }
+
+  create(event: CreateEventRequest): Observable<Event> {
+    return this.http.post<Event>(this.eventUrl, event);
+  }
+
+  update(id: string, post: UpdateEventRequest): Observable<Event> {
+    const url = `${this.eventUrl}/${id}`;
+    return this.http.put<Event>(url, post);
+  }
+
+  deleteById(id: string): Observable<void> {
+    const url = `${this.eventUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
+
+  getCountParticipants(id: String) {
+    const url = `${this.eventUrl}/${id}/count`;
+    return this.http.get<number>(url);
+  }
+
+  addParticipation(eventId: string, userId: string): Observable<void> {
+    const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
+    return this.http.post<void>(url, {
+      headers: {'Content-Type': 'application/json'}
+    });
+  }
+
+  getPassedEvents(): Observable<Event[]> {
+    console.log("passed events");
+    const url = `${this.eventUrl}/past-events`;
+    return this.http.get<Event[]>(url);
+  }
+
+  getUpcomingEvents(): Observable<Event[]> {
+    console.log("upcoming events");
+    const url = `${this.eventUrl}/upcoming-events`;
+    return this.http.get<Event[]>(url);
+  }
+
+  search(query: string): Observable<Event[]> {
+    let params = new HttpParams();
+    if (query) {
+      params = params.append('search', query);
+    }
+    return this.http.get<Event[]>(`${this.eventUrl}/search`, {params});
+  }
+
+  getAllCities(): Observable<string[]> {
+    const url = `${this.eventUrl}/cities`;
+    return this.http.get<string[]>(url);
+  }
+
+  getEventsByCity(city: string): Observable<Event[]> {
+    const url = `${this.eventUrl}/cities/${city}`;
+    return this.http.get<Event[]>(url);
+  }
+
+  isParticipating(eventId: string, userId: string): Observable<boolean> {
+    const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
+    return this.http.get<boolean>(url);
+  }
+
+  deleteParticipation(eventId: string, userId: string): Observable<any> {
+    const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
+    return this.http.delete<boolean>(url, {});
+  }
+
+  createReview(eventId: string, review: CreateReviewRequest): Observable<Review> {
+    const url = `${this.eventUrl}/${eventId}/reviews`;
+    return this.http.post<Review>(url, review);
+  }
+
+  getAllReviews(eventId: string): Observable<Review[]> {
+    const url = `${this.eventUrl}/${eventId}/reviews`;
+    return this.http.get<Review[]>(url);
+  }
 }

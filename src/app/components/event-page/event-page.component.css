@@ -1,6 +1,7 @@
 .event-page {
   background-color: black;
   color: white;
+  padding-bottom: 60px; /* Adjust the value as needed */
 }
 
 .event-detail-container {
@@ -25,6 +26,7 @@ p {
 
 .text-muted {
   color: #aaa !important;
+  margin-top: 3%;
 }
 
 .text-danger {
@@ -44,3 +46,69 @@ p {
   background-color: #0056b3;
 }
 
+.review-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  float: right;
+}
+
+.participate-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  float: right;
+  margin-top: 3%;
+}
+
+.participate-btn.participated {
+  background-color: #ff0b0b;
+  color: white;
+}
+
+.participate-btn:hover {
+  background-color: #0056b3;
+}
+
+.participate-btn.participated:hover {
+  background-color: #d30f0f;
+}
+
+.review {
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #000;
+  color: #fff;
+}
+
+.review-header {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.review-header strong {
+  font-size: 1.2em;
+  display: block;
+}
+
+.review-header .rating {
+  font-weight: bold;
+  color: #ffcc00;
+  display: inline-block;
+}
+
+.review-header .review-date {
+  color: #999;
+  float: right;
+}
+
+.review-body {
+  color: #ddd;
+  margin-top: 10px;
+}

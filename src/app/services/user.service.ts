@@ -31,5 +31,10 @@ export class UserService {
     return this.http.post<User>(`${environment.apiUrl}users/${userId}/friends/${friendId}`, {});
   }
 
+  isParticipating(eventId: string, userId: string): Observable<boolean> {
+    const url = `${environment.apiUrl}users/${eventId}/participations/${userId}`;
+    return this.http.get<boolean>(url);
+  }
+  
   
 }

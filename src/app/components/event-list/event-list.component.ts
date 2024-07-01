@@ -109,114 +109,113 @@ import { HttpResponse } from "@angular/common/http";
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  events$: Observable<Event[]> | null = null;
-  allEvents: Event[] = [];
-  filteredEvents: Event[] = [];
-  title: String = "";
+    events$: Observable<Event[]> | null = null;
+    allEvents: Event[] = [];
+    filteredEvents: Event[] = [];
+    title: String = "";
 
-  constructor(
-    private eventService: EventService,
-    private route: ActivatedRoute,
-    private router: Router,
-  ) {}
+    constructor(
+      private eventService: EventService,
+      private route: ActivatedRoute,
+      private router: Router,
+    ) {}
 
-  ngOnInit(): void {
-    if (this.route.snapshot.params.hasOwnProperty('category')) {
-      this.loadEventPerCategory(this.route.snapshot.params['category']);
-      this.title = "Explore By Categories";
-    } else if (this.route.snapshot.params.hasOwnProperty('city')) {
-      this.loadEventPerCity(this.route.snapshot.params['city']);
-      this.title = "Explore By Cities";
-    } else if (this.router.url === '/events/passed-events') {
-      this.title = "Passed Events";
-      this.loadPassedEvents();
-    } else if (this.router.url === '/events/upcoming-events') {
-      this.title = "Upcoming Events";
-      this.loadUpcomingEvents();
-    } else {
-      this.title = "All Events";
-      this.loadEvents();
+    ngOnInit(): void {
+      if (this.route.snapshot.params.hasOwnProperty('category')) {
+        this.loadEventPerCategory(this.route.snapshot.params['category']);
+        this.title = "Explore By Categories";
+      } else if (this.route.snapshot.params.hasOwnProperty('city')) {
+        this.loadEventPerCity(this.route.snapshot.params['city']);
+        this.title = "Explore By Cities";
+      } else if (this.router.url === '/events/passed-events') {
+        this.title = "Passed Events";
+        this.loadPassedEvents();
+      } else if (this.router.url === '/events/upcoming-events') {
+        this.title = "Upcoming Events";
+        this.loadUpcomingEvents();
+      } else {
+        this.title = "All Events";
+        this.loadEvents();
+      }
+    }
+
+    loadEvents(category: string | null = null): void {
+      this.events$ = this.eventService.getAll()
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+      this.events$.subscribe(events => {
+        this.allEvents = events;
+        this.filteredEvents = events;
+      });
+    }
+
+    loadEventPerCategory(categoryId: string): void {
+      this.events$ = this.eventService.getByCategoryId(categoryId)
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+      this.events$.subscribe(events => {
+        this.allEvents = events;
+        this.filteredEvents = events;
+      });
+    }
+
+    loadEventPerCity(city: string): void {
+      this.events$ = this.eventService.getEventsByCity(city)
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+      this.events$.subscribe(events => {
+        this.allEvents = events;
+        this.filteredEvents = events;
+      });
+    }
+
+    loadPassedEvents() {
+      this.events$ = this.eventService.getPassedEvents()
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+      this.events$.subscribe(events => {
+        this.allEvents = events;
+        this.filteredEvents = events;
+      });
+    }
+
+    loadUpcomingEvents() {
+      this.events$ = this.eventService.getUpcomingEvents()
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+      this.events$.subscribe(events => {
+        this.allEvents = events;
+        this.filteredEvents = events;
+      });
+    }
+
+    onFiltersApplied(filters: { category: string | null, city: string | null, date: Date | null }) {
+      console.log('Filters received in event list:', filters);
+      this.filteredEvents = this.allEvents.filter(event => {
+        const matchesCategory = !filters.category || event.category.name === filters.category;
+        const matchesCity = !filters.city || event.city === filters.city;
+        const matchesDate = !filters.date || new Date(event.date).toDateString() === filters.date.toDateString();
+        return matchesCategory && matchesCity && matchesDate;
+      });
     }
   }
-
-  loadEvents(category: string | null = null): void {
-    this.events$ = this.eventService.getAll()
-      .pipe(
-        catchError((error: HttpResponse<any>) => {
-          console.log(error);
-          return of([]);
-        })
-      );
-    this.events$.subscribe(events => {
-      this.allEvents = events;
-      this.filteredEvents = events;
-    });
-  }
-
-  loadEventPerCategory(categoryId: string): void {
-    this.events$ = this.eventService.getByCategoryId(categoryId)
-      .pipe(
-        catchError((error: HttpResponse<any>) => {
-          console.log(error);
-          return of([]);
-        })
-      );
-    this.events$.subscribe(events => {
-      this.allEvents = events;
-      this.filteredEvents = events;
-    });
-  }
-
-  loadEventPerCity(city: string): void {
-    this.events$ = this.eventService.getEventsByCity(city)
-      .pipe(
-        catchError((error: HttpResponse<any>) => {
-          console.log(error);
-          return of([]);
-        })
-      );
-    this.events$.subscribe(events => {
-      this.allEvents = events;
-      this.filteredEvents = events;
-    });
-  }
-
-  loadPassedEvents() {
-    this.events$ = this.eventService.getPassedEvents()
-      .pipe(
-        catchError((error: HttpResponse<any>) => {
-          console.log(error);
-          return of([]);
-        })
-      );
-    this.events$.subscribe(events => {
-      this.allEvents = events;
-      this.filteredEvents = events;
-    });
-  }
-
-  loadUpcomingEvents() {
-    this.events$ = this.eventService.getUpcomingEvents()
-      .pipe(
-        catchError((error: HttpResponse<any>) => {
-          console.log(error);
-          return of([]);
-        })
-      );
-    this.events$.subscribe(events => {
-      this.allEvents = events;
-      this.filteredEvents = events;
-    });
-  }
-
-  onFiltersApplied(filters: { category: string | null, city: string | null, date: Date | null }) {
-    console.log('Filters received in event list:', filters);
-    this.filteredEvents = this.allEvents.filter(event => {
-      const matchesCategory = !filters.category || event.category.name === filters.category;
-      const matchesCity = !filters.city || event.city === filters.city;
-      const matchesDate = !filters.date || new Date(event.date).toDateString() === filters.date.toDateString();
-      return matchesCategory && matchesCity && matchesDate;
-    });
-  }
-}
-

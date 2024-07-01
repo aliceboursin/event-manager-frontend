@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {EventService} from "../../services/event.service";
 import { Event } from "../../data/event";
 import {catchError, Observable, of} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {SessionStorageService} from "../../services/session.storage.service";
-import {Category} from "../../data/category";
 import {ToastService} from "../../services/toast.service";
+import {Review} from "../../data/review";
 
 @Component({
   selector: 'app-event-page',
@@ -15,14 +15,17 @@ import {ToastService} from "../../services/toast.service";
 })
 export class EventPageComponent implements OnInit {
   event$: Observable<Event> | null = null;
+  reviews$: Observable<Review[]> | null = null;
   participants$: Observable<number> | null = null;
   ownerUser: string | null = null;
+  isParticipating: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private toastService: ToastService,
     private eventService: EventService,
-    private sessionStorage: SessionStorageService
+    private sessionStorage: SessionStorageService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -30,11 +33,15 @@ export class EventPageComponent implements OnInit {
     if (eventId) {
       this.getEvent(eventId);
       this.getCountParticipants(eventId);
+      this.getAllReviewsForEvent(eventId);
     }
   }
 
+  toggleParticipation(): void {
+    this.isParticipating = !this.isParticipating;
+  }
+
   getEvent(id: string): void {
-    console.log(id);
     this.event$ = this.eventService.getById(id)
       .pipe(
         catchError((error:HttpResponse<any>) => {
@@ -42,10 +49,20 @@ export class EventPageComponent implements OnInit {
           return of()
         })
       );
+      this.event$.subscribe(event => {
+        if (event) {
+          const userId = this.sessionStorage.getItem("userId");
+          if (userId) {
+            this.eventService.isParticipating(event.id, userId).subscribe(isParticipating => {
+              this.isParticipating = isParticipating;
+              console.log("is partcipating : " + isParticipating);
+            });
+          }
+        }
+      });
   }
 
   getCountParticipants(id: string): void {
-    console.log("count participants");
     this.participants$ = this.eventService.getCountParticipants(id)
       .pipe(
         catchError((error:HttpResponse<any>) => {
@@ -55,15 +72,41 @@ export class EventPageComponent implements OnInit {
       );
   }
 
-  addParticipation(eventId: string): void {
-    console.log("add participation");
+  handleParticipationButton(eventId: string): void {
     this.ownerUser = sessionStorage.getItem("userId");
     if (!this.ownerUser) {
       console.log("no user logged")
-    } else {
-      console.log(this.ownerUser);
-      this.eventService.addParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
-      this.getCountParticipants(eventId);
+    }else{
+      if(!this.isParticipating){
+        this.eventService.addParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
+    }
+    else{
+      this.eventService.deleteParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
+
+    }
+    this.getCountParticipants(eventId);
+
+    this.toggleParticipation();
     }
   }
+
+  isEventInPast(eventDate: Date): boolean {
+    return new Date(eventDate) < new Date();
+  }
+
+  goToReviewCreationPage(eventId: string): void {
+    this.router.navigate([`/events/${eventId}/review-creation`]);
+  }
+
+  getAllReviewsForEvent(eventId: string): void {
+    this.reviews$ = this.eventService.getAllReviews(eventId)
+      .pipe(
+        catchError((error:HttpResponse<any>) => {
+          console.log(error);
+          return of([])
+        })
+      );
+  }
+
+
 }
