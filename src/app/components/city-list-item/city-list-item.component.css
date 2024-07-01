@@ -1,4 +1,4 @@
-.category-item {
+.city-item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,62 +11,62 @@
   width: 100%; /* Ensure each item takes the full width of its container */
 }
 
-.category-item:hover {
+.city-item:hover {
   transform: translateY(-5px);
   background-color: black;
 }
 
-.category-image {
+.city-image {
   width: 100%;
   height: 200px;
   overflow: hidden;
 }
 
-.category-image img {
+.city-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.category-details {
+.city-details {
   padding: 10px;
   width: 100%;
 }
 
-.category-details .title {
+.city-details .title {
   margin: 0;
   font-size: 1.2rem;
   color: #ffffff;
 }
 
-.category-details .info-line {
+.city-details .info-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.category-details .category, .category-details .orga {
+.city-details .city, .city-details .orga {
   font-size: 1rem;
   padding: 0.5em 1em;
   border-radius: 5px;
 }
 
-.category-details .category {
+.city-details .city {
   background-color: #007bff;
   color: #ffffff;
 }
 
-.category-details .orga {
+.city-details .orga {
   background-color: #28a745;
   color: #ffffff;
 }
 
-.category-details .info {
+.city-details .info {
   font-size: 0.9rem;
   color: #aaaaaa;
 }
 
-.category-details .info div {
+.city-details .info div {
   margin-bottom: 3px;
 }

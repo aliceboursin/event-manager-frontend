@@ -125,8 +125,8 @@ export class EventListComponent implements OnInit {
       this.loadEventPerCategory(this.route.snapshot.params['category']);
       this.title = "Explore By Categories";
     } else if (this.route.snapshot.params.hasOwnProperty('city')) {
-      this.loadEventPerCategory(this.route.snapshot.params['city']);
-      this.title = "Explore By Categories";
+      this.loadEventPerCity(this.route.snapshot.params['city']);
+      this.title = "Explore By Cities";
     } else if (this.router.url === '/events/passed-events') {
       this.title = "Passed Events";
       this.loadPassedEvents();
@@ -167,8 +167,8 @@ export class EventListComponent implements OnInit {
     });
   }
 
-  /*loadEventPerCity(city: string): void {
-    this.events$ = this.eventService.getByCategoryId()
+  loadEventPerCity(city: string): void {
+    this.events$ = this.eventService.getEventsByCity(city)
       .pipe(
         catchError((error: HttpResponse<any>) => {
           console.log(error);
@@ -180,7 +180,7 @@ export class EventListComponent implements OnInit {
       this.filteredEvents = events;
     });
   }
-*/
+
   loadPassedEvents() {
     this.events$ = this.eventService.getPassedEvents()
       .pipe(
