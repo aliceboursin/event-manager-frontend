@@ -58,7 +58,7 @@ export class EventService {
     addParticipation(eventId: string, userId: string): Observable<void>  {
       console.log(eventId);
       console.log(userId);
-      const url = `${this.eventUrl}/${eventId}/${userId}`;
+      const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
       return this.http.post<void>(url, {});
     }
 

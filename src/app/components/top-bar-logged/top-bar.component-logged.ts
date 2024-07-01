@@ -56,4 +56,12 @@ export class TopBarLoggedComponent{
   goToUpcomingEvents() {
     this.router.navigate(['events/upcoming-events']);
   }
+
+  get isAccountPage(): boolean {
+    return this.router.url === '/account'; 
+  }
+
+  get navbarClass(): string {
+    return this.isAccountPage ? 'account-page' : 'default-page';
+  }
 }
