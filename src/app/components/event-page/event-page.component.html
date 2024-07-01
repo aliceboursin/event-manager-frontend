@@ -18,7 +18,12 @@
           <p>
             <i class="bi bi-geo-alt"></i> {{ event.address }}, {{ event.city }}
           </p>
-          <button class="btn btn-primary mb-3" (click)="addParticipation(event.id)">Participate</button>
+          <button 
+            class="btn participate-btn" 
+            [ngClass]="{'participated': isParticipating}" 
+            (click)="handleParticipationButton(event.id)">
+            {{ isParticipating ? 'Leave Event' : 'Join Event' }}
+          </button>
           <p class="text-muted">
             <i class="bi bi-people"></i>
             @if (participants$ | async; as participants) {

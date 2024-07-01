@@ -44,3 +44,28 @@ p {
   background-color: #0056b3;
 }
 
+.participate-btn {
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  float: inline-end;
+  margin-top: 3%;
+}
+
+.participate-btn.participated {
+  background-color: #28a745; 
+  color: white;
+}
+
+.participate-btn:hover {
+  background-color: #0056b3; 
+}
+
+.participate-btn.participated:hover {
+  background-color: #218838; 
+}
+
+

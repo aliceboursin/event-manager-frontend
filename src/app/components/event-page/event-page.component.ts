@@ -17,6 +17,7 @@ export class EventPageComponent implements OnInit {
   event$: Observable<Event> | null = null;
   participants$: Observable<number> | null = null;
   ownerUser: string | null = null;
+  isParticipating: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,12 @@ export class EventPageComponent implements OnInit {
       this.getEvent(eventId);
       this.getCountParticipants(eventId);
     }
+  }
+
+  
+
+  toggleParticipation(): void {
+    this.isParticipating = !this.isParticipating;
   }
 
   getEvent(id: string): void {
@@ -55,15 +62,22 @@ export class EventPageComponent implements OnInit {
       );
   }
 
-  addParticipation(eventId: string): void {
-    console.log("add participation");
+  handleParticipationButton(eventId: string): void {
     this.ownerUser = sessionStorage.getItem("userId");
     if (!this.ownerUser) {
       console.log("no user logged")
-    } else {
-      console.log(this.ownerUser);
-      this.eventService.addParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
-      this.getCountParticipants(eventId);
+    }else{
+      if(this.isParticipating){
+        this.eventService.addParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
     }
+    else{
+      this.eventService.deleteParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
+      
+    }
+    this.getCountParticipants(eventId);
+   
+    this.toggleParticipation();
+    }
+   
   }
 }

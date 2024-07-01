@@ -56,8 +56,6 @@ export class EventService {
     }
 
     addParticipation(eventId: string, userId: string): Observable<void>  {
-      console.log(eventId);
-      console.log(userId);
       const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
       return this.http.post<void>(url, {});
     }
@@ -78,5 +76,18 @@ export class EventService {
       const url = `${this.eventUrl}/cities`;
       return this.http.get<string[]>(url);
     }
+
+    
+    isParticipating(eventId: string, userId: string): Observable<boolean>  {
+      const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
+      return this.http.get<boolean>(url, {});
+    }
+
+    deleteParticipation(eventId: string, userId: string): Observable<any>  {
+      const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
+      return this.http.delete<boolean>(url, {});
+    }
+
+
 
 }
