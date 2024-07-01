@@ -1,39 +1,32 @@
 <div class="filter-bar">
   <div class="filter-item">
-    <div class="dropdown">
-      <button class="btn btn-dark btn-lg dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ selectedCategory ? selectedCategory : 'Category' }}
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-        <li *ngFor="let category of categories">
-          <a class="dropdown-item" (click)="selectedCategory = category.name">{{ category.name }}</a>
-        </li>
-      </ul>
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label style="color: white">Category</mat-label>
+      <mat-select style="color: white" [(ngModel)]="selectedCategory">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="filter-item">
-    <div class="dropdown">
-      <button class="btn btn-dark btn-lg dropdown-toggle" type="button" id="cityDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ selectedCity ? selectedCity : 'City' }}
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="cityDropdown">
-        <li *ngFor="let city of cities">
-          <a class="dropdown-item" (click)="selectedCity = city">{{ city }}</a>
-        </li>
-      </ul>
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label style="color: white">City</mat-label>
+      <mat-select style="color: white" [(ngModel)]="selectedCity">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
-  
-  <!--
   <div class="filter-item">
-    <div class="input-group">
-      <input id="datepicker" type="text" class="form-control" placeholder="Select Date" [value]="selectedDate ? selectedDate : ''" readonly>
-      <button class="btn btn-dark" type="button" (click)="openDatePicker()">
-        <i class="bi bi-calendar"></i>
-      </button>
-    </div>
+    <mat-form-field appearance="outline">
+      <mat-label style="color: white">Select Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="applyFilters()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </div>
-  -->
   <div class="apply-reset">
     <button class="btn btn-primary btn-lg apply-button" (click)="applyFilters()">Apply</button>
     <button class="btn btn-lg reset-button" (click)="resetFilters()">Reset Filters</button>

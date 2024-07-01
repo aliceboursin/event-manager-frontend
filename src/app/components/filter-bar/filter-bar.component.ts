@@ -3,8 +3,6 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../data/category';
 import { EventService } from '../../services/event.service';
 
-declare var $: any;
-
 @Component({
   selector: 'app-filter-bar',
   templateUrl: './filter-bar.component.html',
@@ -13,32 +11,29 @@ declare var $: any;
 export class FilterBarComponent {
   @Output() filtersApplied = new EventEmitter<{ category: string | null, city: string | null, date: Date | null }>();
 
-  
-  constructor(private categoryService: CategoryService, private eventService :EventService) {}
-
-
-  selectedCategory: string| null = null;
+  selectedCategory: string | null = null;
   selectedCity: string | null = null;
-  selectedDate: string | null = null; 
+  selectedDate: Date | null = null;
 
   categories: Category[] = [];
   cities: string[] = [];
 
-  applyFilters() {
-    const date = this.selectedDate ? new Date(this.selectedDate.split('/').reverse().join('/')) : null;
+  constructor(private categoryService: CategoryService, private eventService: EventService) {}
 
+  applyFilters() {
     this.filtersApplied.emit({
       category: this.selectedCategory,
       city: this.selectedCity,
-      date: date
+      date: this.selectedDate
     });
-    
   }
 
-  openDatePicker(): void {
-    $('#datepicker').datepicker('show');
+  resetFilters(): void {
+    this.selectedCategory = null;
+    this.selectedCity = null;
+    this.selectedDate = null;
+    this.applyFilters();
   }
-
 
   ngOnInit(): void {
     this.categoryService.getAll().subscribe((categories: Category[]) => {
@@ -47,25 +42,5 @@ export class FilterBarComponent {
     this.eventService.getAllCities().subscribe((cities: string[]) => {
       this.cities = cities;
     });
-    $('#datepicker').datepicker({
-      format: 'dd/mm/yyyy', // Format de date souhaité
-      autoclose: true,
-      todayHighlight: true
-    }).on('changeDate', (e: any) => {
-      // Mise à jour de la date sélectionnée dans le format souhaité
-      this.selectedDate = `${e.date.getDate()}/${e.date.getMonth() + 1}/${e.date.getFullYear()}`;
-    });
   }
-
-  resetFilters(): void {
-    this.selectedCategory = null;
-    this.selectedCity = null;
-    this.selectedDate = null;
-    this.applyFilters(); 
-  }
-
-
-
-
-  
 }
