@@ -58,7 +58,7 @@ export class EventService {
     addParticipation(eventId: string, userId: string): Observable<void>  {
       console.log(eventId);
       console.log(userId);
-      const url = `${this.eventUrl}/${eventId}/${userId}`;
+      const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
       return this.http.post<void>(url, {});
     }
 
@@ -74,18 +74,9 @@ export class EventService {
       return this.http.get<Event[]>(url);
     }
 
-    search(query: string): Observable<Event[]> {
-        let params = new HttpParams();
-        if (query) {
-          params = params.append('search', query);
-        }
-        return this.http.get<Event[]>(`${this.eventUrl}/search`, { params });
-      }
-
-      getAllCities(): Observable<string[]> {
-        const url = `${this.eventUrl}/cities`;
-        return this.http.get<string[]>(url);
-      
-      }
+    getAllCities(): Observable<string[]> {
+      const url = `${this.eventUrl}/cities`;
+      return this.http.get<string[]>(url);
+    }
 
 }
