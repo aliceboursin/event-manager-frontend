@@ -4,13 +4,14 @@
     <button class="search" (click)="navigateToSearch()"><i class="fa fa-search"></i></button>
     <button (click)="goToPassedEvents()">Passed events</button>
     <button (click)="goToUpcomingEvents()">Upcoming events</button>
-   
+
     <button mat-button [matMenuTriggerFor]="exploreBy">
       <div class="exploreBy">Explore By  <i class="fa fa-angle-down" aria-hidden="true"></i></div>
     </button>
     <mat-menu #exploreBy="matMenu">
       <button mat-menu-item (click)="goToCategories()">Categories</button>
       <button mat-menu-item (click)="goToMyFriendsEvents()">Friends</button>
+      <button mat-menu-item (click)="goToCities()">Cities</button>
     </mat-menu>
   </nav>
   <div class="spacer"></div>
