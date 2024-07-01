@@ -38,6 +38,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
+import { ReviewCreationComponent } from './components/review-creation/review-creation.component';
 import { EventPageComponent } from './components/event-page/event-page.component';
 import { SearchPageComponent } from './components/search/search-page.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
@@ -57,6 +58,7 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
     TopBarUnloggedComponent,
     TopBarLoggedComponent,
     EventCreationComponent,
+    ReviewCreationComponent,
     UserComponent,
     TopBarLoggedComponent,
     AddFriendPopupComponent,

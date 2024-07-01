@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { CreateEventRequest, UpdateEventRequest } from "../data/event";
 import { Event } from "../data/event";
+import {CreateReviewRequest, Review} from "../data/review";
 
 @Injectable()
 export class EventService {
@@ -91,5 +92,12 @@ export class EventService {
       const url = `${this.eventUrl}/cities/${city}`;
       return this.http.get<Event[]>(url);
     }
+
+    createReview(eventId: string, review: CreateReviewRequest): Observable<Review> {
+      console.log(review);
+      const url = `${this.eventUrl}/${eventId}/reviews`;
+      console.log(url);
+      return this.http.post<Review>(url, review);
+  }
 
 }
