@@ -39,7 +39,7 @@ import { EventCreationComponent } from './components/event-creation/event-creati
 import { EventPageComponent } from './components/event-page/event-page.component';
 import { SearchPageComponent } from './components/search/search-page.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -79,7 +79,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
-    NgbModule,
   ],
   providers: [
     AuthService,

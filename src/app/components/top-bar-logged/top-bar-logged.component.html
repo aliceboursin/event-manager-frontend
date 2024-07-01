@@ -1,5 +1,4 @@
-<div class="navbar">
-
+<div class="navbar" [ngClass]="navbarClass">
   <nav class="actions">
     <button class="logo" (click)="goToEvents()">EventHub</button>
     <button class="search" (click)="navigateToSearch()"><i class="fa fa-search"></i></button>
@@ -23,7 +22,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="goToMyAccount()">My Account</button>
       <button mat-menu-item (click)="goToMyEvents()">My Events</button>
-      <button mat-menu-item (click)="logout()" class="red-text">Log Out</button>
+      <button mat-menu-item (click)="logout()" class="red-text"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</button>
     </mat-menu>
   </nav>
 </div>

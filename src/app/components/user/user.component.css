@@ -14,7 +14,7 @@ body {
 .account-top-bar {
 font-family: Arial, sans-serif;
 background-color: #f0f0f0;
-color: black;
+color: black !important;
 }
 
 .account-top-bar .menu button { 
@@ -118,3 +118,10 @@ button:hover {
 .delete-btn {
   color: #FF0000;
 }
+
+.account-top-bar {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: black !important;
+}
+

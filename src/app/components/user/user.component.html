@@ -1,55 +1,7 @@
-
-<!--
-<div class="account-top-bar">
+<div class="account-top-bar account-page">
   <app-top-bar-logged></app-top-bar-logged>
 </div>
-<body>
-  <div class="container">
-    <div class="profile">
-      <div class="profile-header">
-        <div class="avatar">{{ username.charAt(0).toUpperCase() }}</div>
-        <div class="username">{{ username }}</div>
-      </div>
-      <div class="profile-info">
-        <h2>My information</h2>    
-        <div class="info-box">
-          <span>ID: {{ id }}</span>
-          <button class="copy-btn" (click)="copyUserId()">
-            <span *ngIf="!copyButtonState"><i class="fa fa-clone" aria-hidden="true"></i>   </span>
-            <i *ngIf="copyButtonState" class="fa fa-check" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="info-box">
-          <span>Username: {{ username }}</span>
-          <button class="edit-btn" (click)="editUsername()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-        </div>
-        <div class="info-box">
-          <span>Password: ********</span>
-          <button class="edit-btn" (click)="editPassword()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-        </div>
-        
-      </div>
-      <div class="profile-friend">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2 class="mb-0">My Friends</h2>
-          <button class="btn btn-primary" (click)="openAddFriendPopup()">+ Add</button>
-        </div>
-        <div class="friend-box" *ngFor="let friend of friends">
-          <span>{{ friend.username }}</span>
-          <button class="delete-btn" (click)="removeFriend(friend)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
-        </div>
-        <div *ngIf="!friends || friends.length === 0">
-          <p>Your friends list is empty.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
--->
 
-<div class="account-top-bar">
-  <app-top-bar-logged></app-top-bar-logged>
-</div>
 <body>
   <div class="container">
     <div class="profile">
