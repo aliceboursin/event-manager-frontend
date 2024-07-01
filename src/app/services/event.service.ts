@@ -57,7 +57,9 @@ export class EventService {
 
     addParticipation(eventId: string, userId: string): Observable<void>  {
       const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
-      return this.http.post<void>(url, {});
+      return this.http.post<void>(url, {
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
 
     getPassedEvents(): Observable<Event[]> {
@@ -91,10 +93,10 @@ export class EventService {
     }
 
     
-    isParticipating(eventId: string, userId: string): Observable<boolean>  {
+    isParticipating(eventId: string, userId: string): Observable<boolean> {
       const url = `${this.eventUrl}/${eventId}/participations/${userId}`;
-      return this.http.get<boolean>(url, {});
-    }
+      return this.http.get<boolean>(url);
+    }    
 
     deleteParticipation(eventId: string, userId: string): Observable<any>  {
       const url = `${this.eventUrl}/${eventId}/participations/${userId}`;

@@ -7,6 +7,7 @@ import {HttpResponse} from "@angular/common/http";
 import {SessionStorageService} from "../../services/session.storage.service";
 import {Category} from "../../data/category";
 import {ToastService} from "../../services/toast.service";
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-event-page',
@@ -23,7 +24,8 @@ export class EventPageComponent implements OnInit {
     private route: ActivatedRoute,
     private toastService: ToastService,
     private eventService: EventService,
-    private sessionStorage: SessionStorageService
+    private sessionStorage: SessionStorageService,
+    private userService : UserService,
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +43,6 @@ export class EventPageComponent implements OnInit {
   }
 
   getEvent(id: string): void {
-    console.log(id);
     this.event$ = this.eventService.getById(id)
       .pipe(
         catchError((error:HttpResponse<any>) => {
@@ -49,10 +50,20 @@ export class EventPageComponent implements OnInit {
           return of()
         })
       );
+      this.event$.subscribe(event => {
+        if (event) {
+          const userId = this.sessionStorage.getItem("userId");
+          if (userId) {
+            this.eventService.isParticipating(event.id, userId).subscribe(isParticipating => {
+              this.isParticipating = isParticipating;
+              console.log("is partcipating : " + isParticipating);
+            });
+          }
+        }
+      }); 
   }
 
   getCountParticipants(id: string): void {
-    console.log("count participants");
     this.participants$ = this.eventService.getCountParticipants(id)
       .pipe(
         catchError((error:HttpResponse<any>) => {
@@ -67,7 +78,7 @@ export class EventPageComponent implements OnInit {
     if (!this.ownerUser) {
       console.log("no user logged")
     }else{
-      if(this.isParticipating){
+      if(!this.isParticipating){
         this.eventService.addParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
     }
     else{

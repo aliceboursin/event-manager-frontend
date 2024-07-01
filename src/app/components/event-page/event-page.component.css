@@ -25,6 +25,7 @@ p {
 
 .text-muted {
   color: #aaa !important;
+  margin-top: 3%;
 }
 
 .text-danger {
@@ -56,7 +57,7 @@ p {
 }
 
 .participate-btn.participated {
-  background-color: #28a745; 
+  background-color: #ff0b0b; 
   color: white;
 }
 
@@ -65,7 +66,7 @@ p {
 }
 
 .participate-btn.participated:hover {
-  background-color: #218838; 
+  background-color: #d30f0f; 
 }
 
 
