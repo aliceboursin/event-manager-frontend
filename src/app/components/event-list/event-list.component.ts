@@ -33,15 +33,15 @@ export class EventListComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.sesssionStorageService.getItem('userId');
     if(this.userId){
-       this.userService.getFriendsParticipationEventId(this.userId).subscribe(ids => {
-      this.friendEventIds = new Set(ids);  
+      this.userService.getFriendsParticipationEventId(this.userId).subscribe(ids => {
+      this.friendEventIds = new Set(ids);
       this.loadInitialEvents();
     });
     }
     else{
       this.loadInitialEvents();
     }
-  
+
   }
 
   loadInitialEvents() {
@@ -156,7 +156,7 @@ export class EventListComponent implements OnInit {
           this.filteredEvents = events;
         });
     }
-    
+
   }
 
   loadMyPastEvent(){
@@ -173,7 +173,7 @@ export class EventListComponent implements OnInit {
           this.filteredEvents = events;
         });
     }
-    
+
   }
 
   loadMyCreatedEvent(){
@@ -190,7 +190,7 @@ export class EventListComponent implements OnInit {
           this.filteredEvents = events;
         });
     }
-    
+
   }
 
 

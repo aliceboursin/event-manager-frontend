@@ -8,7 +8,8 @@
   transition: transform 0.2s, background-color 0.2s;
   border-radius: 8px;
   overflow: hidden;
-  width: 100%; /* Ensure each item takes the full width of its container */
+  width: 100%;
+  max-width: 700px;
 }
 
 .event-item:hover {

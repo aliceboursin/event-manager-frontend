@@ -13,7 +13,7 @@
           <hr class="divider">
           <p>
             <i class="bi bi-calendar3"></i> Date: {{ event.date | date:"longDate" }} at
-            {{ event.time.toString().replace(',', 'h') }}
+            {{ event.time.toString().replace(',', ':') }}
           </p>
           <p>
             <i class="bi bi-geo-alt"></i> {{ event.address }}, {{ event.city }}

@@ -11,7 +11,7 @@
       </div>
       <div class="info">
         <div>{{ event.address }} - {{ event.city }}</div>
-        <div>{{ event.date | date }} - {{ event.time}} </div>
+        <div>{{ event.date | date: "longDate" }} at {{ event.time.toString().replace(',', ':') }}</div>
         <div></div>
       </div>
     </div>

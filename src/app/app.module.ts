@@ -64,7 +64,7 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
     AddFriendPopupComponent,
     EventPageComponent,
     SearchPageComponent,
-    FilterBarComponent
+    FilterBarComponent,
   ],
   imports: [
     BrowserModule,
