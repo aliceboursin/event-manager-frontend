@@ -42,6 +42,7 @@ import { ReviewCreationComponent } from './components/review-creation/review-cre
 import { EventPageComponent } from './components/event-page/event-page.component';
 import { SearchPageComponent } from './components/search/search-page.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
+    RatingModule,
   ],
   providers: [
     AuthService,

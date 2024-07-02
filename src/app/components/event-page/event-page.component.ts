@@ -19,6 +19,7 @@ export class EventPageComponent implements OnInit {
   participants$: Observable<number> | null = null;
   ownerUser: string | null = null;
   isParticipating: boolean = false;
+  showReviewForm: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -106,6 +107,19 @@ export class EventPageComponent implements OnInit {
           return of([])
         })
       );
+  }
+
+  toggleReviewForm(): void {
+    this.showReviewForm = !this.showReviewForm;
+  }
+
+  onReviewSubmitted(): void {
+    this.showReviewForm = false; 
+    const eventId = this.route.snapshot.paramMap.get('id');
+    if(eventId){
+      this.getAllReviewsForEvent(eventId);
+    }
+    
   }
 
 

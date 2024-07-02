@@ -1,4 +1,4 @@
-<div class="review-creation-page">
+<!--<div class="review-creation-page">
   <app-top-bar-logged></app-top-bar-logged>
   <div class="create-review-container">
     <h2 class="create-review-title">Create Review</h2>
@@ -66,6 +66,64 @@
           >
             Close
           </button>
+          <button type="submit" class="btn btn-success">Submit Review</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+-->
+<div class="review-creation-page">
+  <div class="create-review-container">
+    <form
+      [formGroup]="eventForm"
+      (ngSubmit)="onSubmit()"
+      class="needs-validation"
+      autocomplete="off"
+      novalidate
+    >
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="review-comment" class="form-label">Comment:</label>
+          <textarea
+            class="form-control"
+            id="review-comment"
+            required
+            formControlName="comment"
+            [class.is-invalid]="comment?.invalid && (comment?.touched || isSubmitted)"
+            [class.is-valid]="comment?.valid && (comment?.touched || isSubmitted)"
+          ></textarea>
+          <div
+            *ngIf="comment?.invalid && (comment?.touched || isSubmitted)"
+            class="text-danger"
+          >
+            <div *ngIf="comment?.errors?.['required']">Comment is required</div>
+            <div *ngIf="comment?.errors?.['maxlength']">
+              Comment should not exceed 2500 characters
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="review-grade" class="form-label">Grade:</label>
+          <p-rating
+            formControlName="grade"
+            [cancel]="false"
+            [stars]="5"
+          ></p-rating>
+          <div
+            *ngIf="grade?.invalid && (grade?.touched || isSubmitted)"
+            class="text-danger"
+          >
+            <div *ngIf="grade?.errors?.['required']">Grade is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6 d-flex justify-content-end">
           <button type="submit" class="btn btn-success">Submit Review</button>
         </div>
       </div>
