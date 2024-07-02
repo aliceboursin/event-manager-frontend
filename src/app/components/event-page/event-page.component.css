@@ -78,6 +78,16 @@ p {
   background-color: #d30f0f;
 }
 
+.participate-passed {
+  background-color: #ff0b0b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  float: right;
+  margin-top: 3%;
+  border-radius: 4px;
+}
+
 .review {
   border: 1px solid #444;
   border-radius: 4px;
