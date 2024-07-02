@@ -7,8 +7,8 @@ import {CategoryListComponent} from "./components/category-list/category-list.co
 import {EventCreationComponent} from "./components/event-creation/event-creation.component";
 import {EventPageComponent} from "./components/event-page/event-page.component";
 import { SearchPageComponent } from './components/search/search-page.component';
-import {CityListComponent} from "./components/city-list/city-list.component";
-import {ReviewCreationComponent} from "./components/review-creation/review-creation.component";
+import { CityListComponent } from './components/city-list/city-list.component';
+import { ReviewCreationComponent } from './components/review-creation/review-creation.component';
 
 
 const routes: Routes = [
@@ -41,6 +41,23 @@ const routes: Routes = [
       {
         path: ':id',
         component: EventPageComponent
+      },
+      {
+        path: 'my-events',
+        children: [
+          {
+            path: 'created-events',
+            component: EventListComponent
+          },
+          {
+            path: 'upcoming-events',
+            component: EventListComponent
+          },
+          {
+            path: 'past-events',
+            component: EventListComponent
+          }
+        ]
       }
     ]
   },

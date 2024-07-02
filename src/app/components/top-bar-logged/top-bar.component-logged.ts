@@ -63,6 +63,18 @@ export class TopBarLoggedComponent{
     this.router.navigate(['events/upcoming-events']);
   }
 
+  goToMyUpcomingEvents(){
+    this.router.navigate(['events/my-events/upcoming-events'])
+  }
+
+  goToMyCreatedEvents(){
+    this.router.navigate(['events/my-events/created-events'])
+  }
+  
+  goToMyPastEvents(){
+    this.router.navigate(['events/my-events/past-events'])
+  }
+
   get isAccountPage(): boolean {
     return this.router.url === '/account';
   }
