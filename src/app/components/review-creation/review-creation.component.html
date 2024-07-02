@@ -1,78 +1,3 @@
-<!--<div class="review-creation-page">
-  <app-top-bar-logged></app-top-bar-logged>
-  <div class="create-review-container">
-    <h2 class="create-review-title">Create Review</h2>
-    <form
-      [formGroup]="eventForm"
-      (ngSubmit)="onSubmit()"
-      class="needs-validation"
-      autocomplete="off"
-      novalidate
-    >
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <label for="review-comment" class="form-label">Comment:</label>
-          <textarea
-            class="form-control"
-            id="review-comment"
-            required
-            formControlName="comment"
-            [class.is-invalid]="comment?.invalid && (comment?.touched || isSubmitted)"
-            [class.is-valid]="comment?.valid && (comment?.touched || isSubmitted)"
-          ></textarea>
-          <div
-            *ngIf="comment?.invalid && (comment?.touched || isSubmitted)"
-            class="text-danger"
-          >
-            <div *ngIf="comment?.errors?.['required']">Comment is required</div>
-            <div *ngIf="comment?.errors?.['maxlength']">
-              Comment should not exceed 2500 characters
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="review-grade" class="form-label">Grade:</label>
-          <input
-            type="number"
-            class="form-control"
-            id="review-grade"
-            required
-            formControlName="grade"
-            min="0"
-            max="5"
-            [class.is-invalid]="grade?.invalid && (grade?.touched || isSubmitted)"
-            [class.is-valid]="grade?.valid && (grade?.touched || isSubmitted)"
-          />
-          <div
-            *ngIf="grade?.invalid && (grade?.touched || isSubmitted)"
-            class="text-danger"
-          >
-            <div *ngIf="grade?.errors?.['required']">Grade is required</div>
-            <div *ngIf="grade?.errors?.['min']">Grade must be at least 0</div>
-            <div *ngIf="grade?.errors?.['max']">Grade must be at most 5</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6 d-flex justify-content-end">
-          <button
-            type="button"
-            class="btn btn-outline-danger me-2"
-            (click)="goToHomePage()"
-          >
-            Close
-          </button>
-          <button type="submit" class="btn btn-success">Submit Review</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
--->
 <div class="review-creation-page">
   <div class="create-review-container">
     <form
@@ -82,32 +7,9 @@
       autocomplete="off"
       novalidate
     >
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <label for="review-comment" class="form-label">Comment:</label>
-          <textarea
-            class="form-control"
-            id="review-comment"
-            required
-            formControlName="comment"
-            [class.is-invalid]="comment?.invalid && (comment?.touched || isSubmitted)"
-            [class.is-valid]="comment?.valid && (comment?.touched || isSubmitted)"
-          ></textarea>
-          <div
-            *ngIf="comment?.invalid && (comment?.touched || isSubmitted)"
-            class="text-danger"
-          >
-            <div *ngIf="comment?.errors?.['required']">Comment is required</div>
-            <div *ngIf="comment?.errors?.['maxlength']">
-              Comment should not exceed 2500 characters
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-row">
+    <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="review-grade" class="form-label">Grade:</label>
+          <label for="review-grade" class="form-label"></label>
           <p-rating
             formControlName="grade"
             [cancel]="false"
@@ -121,10 +23,32 @@
           </div>
         </div>
       </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="review-comment" class="form-label">Comment:</label>
+          <textarea
+            class="form-control"
+            id="review-comment"
+            required
+            formControlName="comment"
+            [class.is-invalid]="comment?.invalid && (comment?.touched || isSubmitted)"
+            [class.is-valid]="comment?.valid && (comment?.touched || isSubmitted)"
+          ></textarea>
+          <div
+            *ngIf="comment?.invalid && (comment?.touched || isSubmitted)"
+            class="text-danger"
+          >
+            <div *ngIf="comment?.errors?.['required']">Comment is required</div>
+            <div *ngIf="comment?.errors?.['maxlength']">
+              Comment should not exceed 2500 characters
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="form-row">
         <div class="form-group col-md-6 d-flex justify-content-end">
-          <button type="submit" class="btn btn-success">Submit Review</button>
+          <button type="submit" class="btn btn-primary btn-lg submit-button">Submit</button>
         </div>
       </div>
     </form>

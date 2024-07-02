@@ -126,10 +126,9 @@ p {
 
 .review-creation-container {
   position: relative;
-  padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background: #fff;
+  padding: 20px;
 }
 
 .close-btn {

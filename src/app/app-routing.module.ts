@@ -35,10 +35,6 @@ const routes: Routes = [
         component: EventListComponent
       },
       {
-        path: ':id/review-creation',
-        component: ReviewCreationComponent,
-      },
-      {
         path: ':id',
         component: EventPageComponent
       },
