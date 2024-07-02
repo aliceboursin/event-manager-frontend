@@ -91,9 +91,18 @@
           <hr class="divider">
           <p><i class="bi bi-calendar3"></i> Date: {{ event.date | date:'longDate' }} at {{ event.time.toString().replace(',', 'h') }}</p>
           <p><i class="bi bi-geo-alt"></i> {{ event.address }}, {{ event.city }}</p>
-          <button class="btn participate-btn" [ngClass]="{'participated': isParticipating}" (click)="handleParticipationButton(event.id)">
-            {{ isParticipating ? 'Leave Event' : 'Join Event' }}
-          </button>
+          @if (!isEventInPast(event.date)){
+            <button
+              class="btn participate-btn"
+              [ngClass]="{'participated': isParticipating}"
+              (click)="handleParticipationButton(event.id)">
+              {{ isParticipating ? 'Leave Event' : 'Join Event' }}
+            </button>
+          } @else {
+            @if (isParticipating){
+              <p class="participate-passed">You participated</p>
+            }
+          }
           <p class="text-muted"><i class="bi bi-people"></i>
             <ng-container *ngIf="participants$ | async as participants; else noParticipants">
               {{ participants.valueOf() }}
@@ -123,21 +132,10 @@
       </h2>
       <div *ngIf="showReviewForm" class="review-creation-container mt-5">
         <button class="close-btn" (click)="toggleReviewForm()">✖</button>
-        <app-review-creation [eventId]="event.id" (reviewSubmitted)="onReviewSubmitted()"></app-review-creation>
+        <app-review-creation [eventId]="event.id"></app-review-creation>
       </div>
       <hr class="divider">
-      <ng-container *ngIf="reviews$ | async as reviews">
-        <div *ngFor="let review of reviews" class="review">
-          <div class="review-header">
-            <h3>{{ review.owner }}</h3>
-            <span class="rating">{{ review.grade }}/5</span>
-            <span class="review-date">{{ review.date | date:'dd/MM/yyyy' }}</span>
-          </div>
-          <div class="review-body">{{ review.comment }}</div>
-        </div>
-      </ng-container>
-
-     
+      <app-review-list></app-review-list>
     </div>
   </ng-container>
 </div>

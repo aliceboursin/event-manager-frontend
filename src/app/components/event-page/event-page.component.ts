@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {EventService} from "../../services/event.service";
 import { Event } from "../../data/event";
 import {catchError, Observable, of} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {SessionStorageService} from "../../services/session.storage.service";
 import {ToastService} from "../../services/toast.service";
-import {Review} from "../../data/review";
 
 @Component({
   selector: 'app-event-page',
@@ -15,7 +14,6 @@ import {Review} from "../../data/review";
 })
 export class EventPageComponent implements OnInit {
   event$: Observable<Event> | null = null;
-  reviews$: Observable<Review[]> | null = null;
   participants$: Observable<number> | null = null;
   ownerUser: string | null = null;
   isParticipating: boolean = false;
@@ -26,7 +24,6 @@ export class EventPageComponent implements OnInit {
     private toastService: ToastService,
     private eventService: EventService,
     private sessionStorage: SessionStorageService,
-    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +31,6 @@ export class EventPageComponent implements OnInit {
     if (eventId) {
       this.getEvent(eventId);
       this.getCountParticipants(eventId);
-      this.getAllReviewsForEvent(eventId);
     }
   }
 
@@ -95,32 +91,8 @@ export class EventPageComponent implements OnInit {
     return new Date(eventDate) < new Date();
   }
 
-  goToReviewCreationPage(eventId: string): void {
-    this.router.navigate([`/events/${eventId}/review-creation`]);
-  }
-
-  getAllReviewsForEvent(eventId: string): void {
-    this.reviews$ = this.eventService.getAllReviews(eventId)
-      .pipe(
-        catchError((error:HttpResponse<any>) => {
-          console.log(error);
-          return of([])
-        })
-      );
-  }
-
   toggleReviewForm(): void {
     this.showReviewForm = !this.showReviewForm;
   }
-
-  onReviewSubmitted(): void {
-    this.showReviewForm = false; 
-    const eventId = this.route.snapshot.paramMap.get('id');
-    if(eventId){
-      this.getAllReviewsForEvent(eventId);
-    }
-    
-  }
-
 
 }

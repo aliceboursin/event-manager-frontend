@@ -43,6 +43,7 @@ import { EventPageComponent } from './components/event-page/event-page.component
 import { SearchPageComponent } from './components/search/search-page.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 import { RatingModule } from 'primeng/rating';
+import { ReviewListComponent } from './components/review-list/review-list.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { RatingModule } from 'primeng/rating';
     EventPageComponent,
     SearchPageComponent,
     FilterBarComponent,
+    ReviewListComponent,
   ],
   imports: [
     BrowserModule,

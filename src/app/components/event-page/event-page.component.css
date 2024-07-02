@@ -110,7 +110,6 @@ p {
 .review-header .rating {
   font-weight: bold;
   color: #ffcc00;
-  display: inline-block;
 }
 
 .review-header .review-date {

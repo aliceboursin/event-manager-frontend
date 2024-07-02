@@ -6,7 +6,7 @@ import {Time} from "@angular/common";
 export interface Review {
     id: string;
     event : Event,
-    owner: User;
+    user: User;
     comment : string;
     grade : number;
     date : Date;

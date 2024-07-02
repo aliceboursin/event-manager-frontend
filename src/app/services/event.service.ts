@@ -108,11 +108,11 @@ export class EventService {
     return this.http.post<Review>(url, review);
   }
 
-  getAllReviews(eventId: string): Observable<Review[]> {
+  getAllEventReviews(eventId: string): Observable<Review[]> {
     const url = `${this.eventUrl}/${eventId}/reviews`;
     return this.http.get<Review[]>(url);
   }
-  
+
   getAllMyUpcomingEvent(id : string): Observable<Event[]>{
     return this.http.get<Event[]>(`${this.eventUrl}/upcoming-events/participations/user/${id}`)
   }
