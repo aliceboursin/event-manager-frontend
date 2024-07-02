@@ -19,6 +19,7 @@ export class EventListComponent implements OnInit {
   title: String = "";
   friendEventIds: Set<string> = new Set();
   showFriendEvents: boolean = false;
+  userId : string | null = "";
 
   constructor(
     private eventService: EventService,
@@ -30,9 +31,9 @@ export class EventListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const currentUserId = this.sesssionStorageService.getItem('userId');
-    if(currentUserId){
-       this.userService.getFriendsParticipationEventId(currentUserId).subscribe(ids => {
+    this.userId = this.sesssionStorageService.getItem('userId');
+    if(this.userId){
+       this.userService.getFriendsParticipationEventId(this.userId).subscribe(ids => {
       this.friendEventIds = new Set(ids);  
       this.loadInitialEvents();
     });
@@ -56,6 +57,15 @@ export class EventListComponent implements OnInit {
     } else if (this.router.url === '/events/upcoming-events') {
       this.title = "Upcoming Events";
       this.loadUpcomingEvents();
+    } else if (this.router.url === '/events/my-events/upcoming-events') {
+      this.title = "My Upcoming Events";
+      this.loadMyUpcomingEvent();
+    } else if (this.router.url === '/events/my-events/past-events') {
+      this.title = "My Past Events";
+      this.loadMyPastEvent();
+    } else if (this.router.url === '/events/my-events/created-events') {
+      this.title = "Events I created";
+      this.loadMyCreatedEvent();
     } else {
       this.title = "All Events";
       this.loadEvents();
@@ -131,6 +141,58 @@ export class EventListComponent implements OnInit {
       this.filteredEvents = events;
     });
   }
+
+  loadMyUpcomingEvent(){
+    if(this.userId){
+      this.events$ = this.eventService.getAllMyUpcomingEvent(this.userId)
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+        this.events$.subscribe(events => {
+          this.allEvents = events;
+          this.filteredEvents = events;
+        });
+    }
+    
+  }
+
+  loadMyPastEvent(){
+    if(this.userId){
+      this.events$ = this.eventService.getAllMyPastEvent(this.userId)
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+        this.events$.subscribe(events => {
+          this.allEvents = events;
+          this.filteredEvents = events;
+        });
+    }
+    
+  }
+
+  loadMyCreatedEvent(){
+    if(this.userId){
+      this.events$ = this.eventService.getAllMyOwnedEvent(this.userId)
+        .pipe(
+          catchError((error: HttpResponse<any>) => {
+            console.log(error);
+            return of([]);
+          })
+        );
+        this.events$.subscribe(events => {
+          this.allEvents = events;
+          this.filteredEvents = events;
+        });
+    }
+    
+  }
+
 
   onFiltersApplied(filters: { category: string | null, city: string | null, date: Date | null, showFriendEvents: boolean }) {
     console.log('Filters received in event list:', filters);

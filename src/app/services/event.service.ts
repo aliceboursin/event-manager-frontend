@@ -112,4 +112,18 @@ export class EventService {
     const url = `${this.eventUrl}/${eventId}/reviews`;
     return this.http.get<Review[]>(url);
   }
+  
+  getAllMyUpcomingEvent(id : string): Observable<Event[]>{
+    return this.http.get<Event[]>(`${this.eventUrl}/upcoming-events/participations/user/${id}`)
+  }
+
+
+  getAllMyPastEvent(id : string): Observable<Event[]>{
+    return this.http.get<Event[]>(`${this.eventUrl}/past-events/participations/user/${id}`)
+  }
+
+  getAllMyOwnedEvent(id : string): Observable<Event[]>{
+    return this.http.get<Event[]>(`${this.eventUrl}/owner/${id}`)
+  }
+
 }
