@@ -26,7 +26,9 @@
               {{ isParticipating ? 'Leave Event' : 'Join Event' }}
             </button>
           } @else {
-            <p class="participate-passed">You participated</p>
+            @if (isParticipating){
+              <p class="participate-passed">You participated</p>
+            }
           }
           <p class="text-muted">
             <i class="bi bi-people"></i>
