@@ -1,4 +1,4 @@
-<div class="event-page">
+<!--<div class="event-page">
   <app-top-bar-logged></app-top-bar-logged>
   @if (event$ | async; as event) {
     <div class="container mt-5">
@@ -54,12 +54,13 @@
     @if (isParticipating && isEventInPast(event.date)){
     <div class="container mt-5">
       <h2>Reviews
-
-          <button
-            class="btn review-btn"
-            (click)="goToReviewCreationPage(event.id)">
-            Add a review
-          </button>
+      @if (isParticipating && isEventInPast(event.date)){
+        <button
+          class="btn review-btn"
+          (click)="goToReviewCreationPage(event.id)">
+          <i class="fa fa-plus" aria-hidden="true"></i> Add
+        </button>
+      }
       </h2>
       <hr class="divider">
       @if (reviews$ | async; as reviews) {
@@ -77,7 +78,67 @@
         }
       }
     </div>
-    }
-
   }
+</div>-->
+<div class="event-page">
+  <app-top-bar-logged></app-top-bar-logged>
+  <ng-container *ngIf="event$ | async as event">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 *ngIf="event.title">{{ event.title }}</h2>
+          <div class="text-muted" *ngIf="event.owner">By {{ event.owner.username }}</div>
+          <hr class="divider">
+          <p><i class="bi bi-calendar3"></i> Date: {{ event.date | date:'longDate' }} at {{ event.time.toString().replace(',', 'h') }}</p>
+          <p><i class="bi bi-geo-alt"></i> {{ event.address }}, {{ event.city }}</p>
+          <button class="btn participate-btn" [ngClass]="{'participated': isParticipating}" (click)="handleParticipationButton(event.id)">
+            {{ isParticipating ? 'Leave Event' : 'Join Event' }}
+          </button>
+          <p class="text-muted"><i class="bi bi-people"></i>
+            <ng-container *ngIf="participants$ | async as participants; else noParticipants">
+              {{ participants.valueOf() }}
+            </ng-container>
+            <ng-template #noParticipants>Could not find participants</ng-template>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img [src]="'assets/' + event.category.name + '.jpg'" alt="{{ event.category.name }}" class="img-fluid event-image">
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Description</h2>
+      <hr class="divider">
+      <p>{{ event.description }}</p>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Reviews
+        <ng-container *ngIf="isParticipating && isEventInPast(event.date)">
+          <button class="btn review-btn" (click)="toggleReviewForm()">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </ng-container>
+      </h2>
+      <div *ngIf="showReviewForm" class="review-creation-container mt-5">
+        <button class="close-btn" (click)="toggleReviewForm()">✖</button>
+        <app-review-creation [eventId]="event.id" (reviewSubmitted)="onReviewSubmitted()"></app-review-creation>
+      </div>
+      <hr class="divider">
+      <ng-container *ngIf="reviews$ | async as reviews">
+        <div *ngFor="let review of reviews" class="review">
+          <div class="review-header">
+            <h3>{{ review.owner }}</h3>
+            <span class="rating">{{ review.grade }}/5</span>
+            <span class="review-date">{{ review.date | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="review-body">{{ review.comment }}</div>
+        </div>
+      </ng-container>
+
+     
+    </div>
+  </ng-container>
 </div>
+
