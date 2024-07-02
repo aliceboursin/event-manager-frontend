@@ -13,6 +13,7 @@ export interface Event {
     description : String;
     category : Category;
     owner : User;
+    last_updated: Date
 }
 
 export type UpdateEventRequest= Omit<Event, "id" | "owner"> ;
