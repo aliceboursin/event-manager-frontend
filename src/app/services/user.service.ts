@@ -35,6 +35,13 @@ export class UserService {
     const url = `${environment.apiUrl}users/${eventId}/participations/${userId}`;
     return this.http.get<boolean>(url);
   }
+
+  getFriendsParticipationEventId(userId: string): Observable<string> {
+    const url = `${environment.apiUrl}users/${userId}/friends/participations/events/id`;
+    return this.http.get<string>(url);
+  }
+
+
   
   
 }

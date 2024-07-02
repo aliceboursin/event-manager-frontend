@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
-import { Category } from '../../data/category';
 import { EventService } from '../../services/event.service';
+import { Category } from '../../data/category';
 
 @Component({
   selector: 'app-filter-bar',
@@ -9,11 +9,12 @@ import { EventService } from '../../services/event.service';
   styleUrls: ['./filter-bar.component.css']
 })
 export class FilterBarComponent {
-  @Output() filtersApplied = new EventEmitter<{ category: string | null, city: string | null, date: Date | null }>();
+  @Output() filtersApplied = new EventEmitter<{ category: string | null, city: string | null, date: Date | null, showFriendEvents: boolean }>();
 
   selectedCategory: string | null = null;
   selectedCity: string | null = null;
   selectedDate: Date | null = null;
+  showFriendEvents: boolean = false;
 
   categories: Category[] = [];
   cities: string[] = [];
@@ -24,7 +25,8 @@ export class FilterBarComponent {
     this.filtersApplied.emit({
       category: this.selectedCategory,
       city: this.selectedCity,
-      date: this.selectedDate
+      date: this.selectedDate,
+      showFriendEvents: this.showFriendEvents
     });
   }
 
@@ -32,6 +34,7 @@ export class FilterBarComponent {
     this.selectedCategory = null;
     this.selectedCity = null;
     this.selectedDate = null;
+    this.showFriendEvents = false;
     this.applyFilters();
   }
 

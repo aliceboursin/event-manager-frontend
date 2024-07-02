@@ -27,6 +27,12 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
+  <div class="filter-item">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="friendsSwitch" [(ngModel)]="showFriendEvents">
+      <label class="form-check-label" for="friendsSwitch" style="font-size:17px;">Show Friend Events</label>
+    </div>
+  </div>
   <div class="apply-reset">
     <button class="btn btn-primary btn-lg apply-button" (click)="applyFilters()">Apply</button>
     <button class="btn btn-lg reset-button" (click)="resetFilters()">Reset Filters</button>
