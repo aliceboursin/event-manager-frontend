@@ -6,6 +6,7 @@ import { catchError, Observable, of } from "rxjs";
 import { HttpResponse } from "@angular/common/http";
 import { UserService } from "../../services/user.service";
 import { SessionStorageService } from "../../services/session.storage.service";
+import { ToastService } from "../../services/toast.service";
 
 @Component({
   selector: 'app-event-list',
@@ -27,6 +28,7 @@ export class EventListComponent implements OnInit {
     private router: Router,
     private userService : UserService,
     private sessionStorageService : SessionStorageService,
+    private toastService : ToastService
   ) {}
 
 
@@ -39,10 +41,11 @@ export class EventListComponent implements OnInit {
     });
     }
     else{
-      this.loadInitialEvents();
+      this.router.navigate(['/']);
+      this.toastService.showToast("Please log in", "error");
     }
-
   }
+
 
   loadInitialEvents() {
     if (this.route.snapshot.params.hasOwnProperty('category')) {

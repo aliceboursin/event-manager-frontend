@@ -66,8 +66,16 @@ get confirmPassword(){
 }
 
 ngOnInit(): void {
-  this.loadFriends();
+  const userId = this.sessionStorageService.getItem('userId');
+  if(userId){
+    this.loadFriends();
+  }
+  else{
+    this.toastService.showToast("Please log in", "error");
+    this.router.navigate(['/']);
+  } 
 }
+
 
 loadFriends(): void {
   this.friendshipService.getById(this.id).subscribe((friends) => {

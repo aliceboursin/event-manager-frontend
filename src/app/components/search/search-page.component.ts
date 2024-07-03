@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../services/event.service';
 import { Event } from "../../data/event";
 import { Location } from '@angular/common';
+import { SessionStorageService } from '../../services/session.storage.service';
+import { ToastService } from '../../services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
@@ -13,14 +16,28 @@ export class SearchPageComponent implements OnInit {
   allEvents: Event[] = [];
   filteredEvents: Event[] = [];
 
-  constructor(private eventService: EventService, private location: Location) {}
+  constructor(
+    private eventService: EventService, 
+    private location: Location, 
+    private sessionStorageService : SessionStorageService, 
+    private toastService : ToastService,
+    private router : Router
+  ) {}
 
   ngOnInit(): void {
-    this.eventService.getAll().subscribe((events: Event[]) => {
-      this.allEvents = events;
-      this.filteredEvents = events;
-    });
+    const userId = this.sessionStorageService.getItem('userId');
+    if(userId){
+      this.eventService.getAll().subscribe((events: Event[]) => {
+        this.allEvents = events;
+        this.filteredEvents = events;
+      });
+    }else{
+      this.toastService.showToast("Please log in", "error");
+      this.router.navigate(['/']);
+    } 
   }
+
+  
 
   onSearch(query: string): void {
     this.query = query.toLowerCase();

@@ -85,7 +85,7 @@ const routes: Routes = [
       },
     ]
   },
-  // { path: 'categories', component: CategoryListComponent },
+
 ];
 
 @NgModule({

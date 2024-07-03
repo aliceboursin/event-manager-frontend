@@ -8,6 +8,11 @@
 <body>
     <div class="container">
         <h2>My Reviews</h2>
+
+        <div *ngIf="reviews.length === 0" class="" role="alert">
+            No reviews available.
+          </div>
+
         <div class="card mb-3" *ngFor="let item of reviews">
             <div class="row align-items-center rounded p-4" style="background: none; border: none;">
                 <div class="col-md-3">

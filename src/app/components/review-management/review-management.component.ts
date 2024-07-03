@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { ReviewService } from '../../services/review.service';
 import { Review } from '../../data/review';
 import { SessionStorageService } from '../../services/session.storage.service';
+import { Router } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-review-management',
@@ -11,8 +13,30 @@ import { SessionStorageService } from '../../services/session.storage.service';
 })
 export class ReviewManagementComponent implements OnInit {
 
-  constructor(private reviewService: ReviewService,private sessionStorageService: SessionStorageService) {
+  constructor(
+    private reviewService: ReviewService,
+    private sessionStorageService: SessionStorageService,
+    private router : Router,  
+    private toastService : ToastService,
+  ) {
     this.id = this.sessionStorageService.getItem('userId') || "";
+  }
+ 
+
+
+  ngOnInit(): void {
+    const userId = this.sessionStorageService.getItem('userId');
+    if(userId){
+      this.loadReviews();
+    this.sortOptions = [
+      { label: 'Title', value: 'event.title' },
+      { label: 'Date', value: 'event.date' }
+    ];
+    }
+    else{
+      this.toastService.showToast("Please log in", "error");
+      this.router.navigate(['/']);
+    } 
   }
 
 
@@ -25,16 +49,7 @@ export class ReviewManagementComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    this.loadReviews();
-    this.sortOptions = [
-      { label: 'Title', value: 'event.title' },
-      { label: 'Date', value: 'event.date' }
-    ];
-  }
-
   loadReviews(): void {
-    // Replace with your service call to get reviews for the logged-in user
     this.reviewService.getUserReviews(this.id).subscribe(reviews => {
       this.reviews = reviews;
     });
@@ -62,20 +77,14 @@ export class ReviewManagementComponent implements OnInit {
     this.showOptions = !this.showOptions;
   }
 
-  onEdit(review: Review): void {
-    // Handle edit action
-  }
-
-  editReview(review: Review): void {
-    // Logic to edit the review
-  }
+ 
 
   getFilledStars(count: number): number[] {
     return Array(count).fill(0);
 }
 
-// Fonction pour générer les étoiles vides (5 - grade)
-getEmptyStars(count: number): number[] {
+
+  getEmptyStars(count: number): number[] {
     return Array(5 - count).fill(0);
-}
+  }
 }
