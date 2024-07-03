@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import Swal from 'sweetalert2';
@@ -24,7 +23,6 @@ export class ReviewCreationComponent implements OnInit {
     private sessionStorage: SessionStorageService,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -72,12 +70,6 @@ export class ReviewCreationComponent implements OnInit {
       });
     }
   }
-
-  close(): void {
-    this.reviewSubmitted.emit(); // Emit the event here too
-    console.log("close");
-  }
-
 
   get comment(): AbstractControl | null {
     return this.eventForm.get('comment');

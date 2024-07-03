@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { Event } from "../../data/event";
 import { Location } from '@angular/common';

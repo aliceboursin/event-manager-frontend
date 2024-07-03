@@ -4,50 +4,24 @@ body {
   font-family: 'Helvetica', sans-serif;
 }
 
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-.form-container {  
+.form-container {
   margin: auto;
   padding: 20px;
   background: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-::ng-deep .mat-mdc-dialog-surface, ::ng-deep .mdc-dialog__surface {
-  border-radius: 0 !important;
-}
-
-.bi {
-  vertical-align: -0.125em;
-  fill: currentColor;
-}
-
-.bd-mode-toggle {
-  z-index: 1500;
-}
-
-.bd-mode-toggle .dropdown-menu .active .bi {
-  display: block !important;
-}
-
 .container {
   justify-content: center;
   align-items: center;
-  min-height: 100vh; 
-  padding: 0 5%; 
-  padding-top: 20%;
+  min-height: 100vh;
+  padding: 20% 5% 0;
   transition: 500ms ease-in-out;
 }
 
 .form-container {
   width: 100%;
-  max-width: 400px; 
+  max-width: 400px;
   padding: 2rem;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -55,8 +29,8 @@ body {
 
 .button-container {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
 }
 
 .btn {
@@ -81,19 +55,6 @@ body {
   margin-bottom: 10px;
   text-decoration: none;
   color: black;
-}
-
-.forgot-password {
-  display: block;
-  margin-top: 10px;
-  text-align: right;
-  text-decoration: none;
-  color: black;
-}
-
-.signup-link {
-  text-align: center;
-  margin-top: 20px;
 }
 
 .signup-link a {

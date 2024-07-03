@@ -8,12 +8,6 @@
   box-sizing: border-box;
 }
 
-.create-review-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 .form-row {
   margin-top: 10px;
   display: flex;
@@ -54,26 +48,6 @@
 .invalid-feedback,
 .text-danger {
   font-size: 12px;
-}
-
-.btn-outline-danger {
-  color: #ff3b30;
-  border-color: #ff3b30;
-}
-
-.btn-outline-danger:hover {
-  background-color: #ff3b30;
-  color: white;
-}
-
-.btn-success {
-  background-color: #34c759;
-  border-color: #34c759;
-}
-
-.btn-success:hover {
-  background-color: #28a745;
-  border-color: #28a745;
 }
 
 @media (max-width: 768px) {

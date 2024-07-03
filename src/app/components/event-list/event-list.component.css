@@ -9,13 +9,10 @@
   color: white;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  padding: 20px;
-  margin: 0; /* Remove default margin */
-  width: 100%; /* Ensure the grid takes the full width of the container */
-  box-sizing: border-box; /* Ensure padding and borders are included in the width */
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-bottom: 5%;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 10% 5%;
 }
 
 .event-item {

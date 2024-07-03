@@ -9,86 +9,75 @@ body {display: flex; margin: 0; font-family: Roboto, "Helvetica Neue", sans-seri
 
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: none;
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .spacer {
-    flex: 1;
-  }
-  
-  .actions {
-    display: flex;
-    margin-left: 20px;
-  }
-  
-  .exploreBy {
-    font-size: 18px;
-    font-weight: normal;
-  }
-  
-  .actions button {
-    margin: 0 20px;
-    text-decoration: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Par défaut, on laisse la couleur blanche */
-  .navbar.default-page .actions button {
-    color: white;
-  }
-  
-  /* Pour la page account, on utilise la couleur noire */
-  .navbar.account-page .actions button {
-    color: black;
-  }
-  
-  .avatar {
-    width: 25px;
-    height: 25px;
-    background-color: #ddd;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 17px;
-    margin-right: 10px;
-    text-transform: uppercase;
-    color: black;
-  }
-  
-  .red-text {
-    color: red;
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #333;
-    border-radius: 4px;
-    padding: 0 8px;
-    margin-right: 16px;
-  }
-  
-  .search-bar input {
-    border: none;
-    background: none;
-    color: #fff;
-    padding: 8px;
-    outline: none;
-  }
-  
-  .search-bar mat-icon {
-    color: #fff;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: none;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  margin-left: 20px;
+}
+
+.exploreBy {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.actions button {
+  margin: 0 20px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar.default-page .actions button {
+  color: white;
+}
+
+.navbar.account-page .actions button {
+  color: black;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  margin-right: 10px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.red-text {
+  color: red;
+}
+
+.search-bar input {
+  border: none;
+  background: none;
+  color: #fff;
+  padding: 8px;
+  outline: none;
+}
+
+.search-bar mat-icon {
+  color: #fff;
+}
+

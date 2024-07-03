@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Category } from "../../data/category";
 import { CategoryService } from "../../services/category.service";
-import {catchError, Observable, of, tap} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 
 @Component({

@@ -22,11 +22,6 @@ export class EventService {
     return this.http.get<Event[]>(this.eventUrl, {params});
   }
 
-  getAllSortedByDate(): Observable<Event[]> {
-    const url = `${this.eventUrl}/sorted-by-date`;
-    return this.http.get<Event[]>(url);
-  }
-
   getById(id: string): Observable<Event> {
     const url = `${this.eventUrl}/${id}`;
     return this.http.get<Event>(url);

@@ -46,19 +46,8 @@
   margin-bottom: 10px;
 }
 
-.city-details .city, .city-details .orga {
-  font-size: 1rem;
-  padding: 0.5em 1em;
-  border-radius: 5px;
-}
-
 .city-details .city {
   background-color: #007bff;
-  color: #ffffff;
-}
-
-.city-details .orga {
-  background-color: #28a745;
   color: #ffffff;
 }
 

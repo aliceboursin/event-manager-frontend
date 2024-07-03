@@ -38,14 +38,6 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/account']);
   }
 
-  goToMyEvents() {
-    this.router.navigate(['/my-events']);
-  }
-
-  goToMyFriendsEvents() {
-    this.router.navigate(['/my-friends-events']);
-  }
-
   logout() {
     this.sessionStorageService.clear();
     this.router.navigate(['/']);
@@ -70,7 +62,7 @@ export class TopBarLoggedComponent{
   goToMyCreatedEvents(){
     this.router.navigate(['events/my-events/created-events'])
   }
-  
+
   goToMyPastEvents(){
     this.router.navigate(['events/my-events/past-events'])
   }

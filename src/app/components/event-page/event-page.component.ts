@@ -52,7 +52,7 @@ export class EventPageComponent implements OnInit {
           if (userId) {
             this.eventService.isParticipating(event.id, userId).subscribe(isParticipating => {
               this.isParticipating = isParticipating;
-              console.log("is partcipating : " + isParticipating);
+              console.log("is participating : " + isParticipating);
             });
           }
         }

@@ -58,6 +58,7 @@ export class ReviewListComponent implements OnInit {
 
   }
 
+  // says not used but it is used
   reload() {
     this.ngOnInit();
   }

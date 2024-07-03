@@ -146,8 +146,4 @@ export class EventCreationComponent implements OnInit {
     return this.eventForm.get('category');
   }
 
-  public get owner(): AbstractControl | null {
-    return this.eventForm.get('owner');
-  }
-
 }

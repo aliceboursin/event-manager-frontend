@@ -6,7 +6,7 @@
 }
 
 
-  
+
 .logo {
   font-size: 24px;
   font-weight: bold;
@@ -20,14 +20,6 @@
   border: none;
 }
 
-.custom-dialog-container .mat-dialog-container {
-  border-radius: 0;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
 @keyframes slideIn {
   from {
     transform: translateX(100%);
@@ -39,6 +31,3 @@
   }
 }
 
-.clickable {
-  cursor: pointer;
-}

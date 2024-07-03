@@ -7,14 +7,13 @@ body {
 .container {
   justify-content: center;
   align-items: center;
-  padding: 0 5%; 
-  padding-top: 2%;
+  padding: 2% 5% 0;
   transition: 500ms ease-in-out;
 }
 
 .form-container {
   width: 100%;
-  max-width: 400px; 
+  max-width: 400px;
   padding: 2rem;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -22,8 +21,8 @@ body {
 
 .button-container {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
+  flex-direction: column;
+  align-items: center;
 }
 
 .btn {

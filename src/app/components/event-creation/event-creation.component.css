@@ -58,18 +58,6 @@
   font-size: 12px;
 }
 
-.btn-secondary.add-description {
-  background-color: #4a4a4c;
-  color: #a1a1a3;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-}
-
-.btn-secondary.add-description:hover {
-  background-color: #5a5a5c;
-}
-
 .btn-outline-danger {
   color: #ff3b30;
   border-color: #ff3b30;

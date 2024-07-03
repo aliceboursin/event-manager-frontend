@@ -24,18 +24,6 @@ export class UserService {
     return this.http.delete<any>(`${environment.apiUrl}users/${id}`);
   }
 
-  getFriendsById(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}users/${id}/friends`);
-  }
-
-  addFriend(userId: string, friendId: string): Observable<User> {
-    return this.http.post<User>(`${environment.apiUrl}users/${userId}/friends/${friendId}`, {});
-  }
-
-  isParticipating(eventId: string, userId: string): Observable<boolean> {
-    const url = `${environment.apiUrl}users/${eventId}/participations/${userId}`;
-    return this.http.get<boolean>(url);
-  }
 
   getFriendsParticipationEventId(userId: string): Observable<string> {
     const url = `${environment.apiUrl}users/${userId}/friends/participations/events/id`;

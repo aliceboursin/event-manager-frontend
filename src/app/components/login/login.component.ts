@@ -6,8 +6,6 @@ import { SessionStorageService } from '../../services/session.storage.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastService } from '../../services/toast.service';
 import { Router } from '@angular/router';
-import { SignUpComponent } from '../signup/signup.component';
-
 
 @Component({
   selector: 'login',
@@ -20,8 +18,8 @@ export class LoginComponent {
 
     constructor(
       private fb: FormBuilder,
-      private authService: AuthService, 
-      private sessionStorageService: SessionStorageService,  
+      private authService: AuthService,
+      private sessionStorageService: SessionStorageService,
       public dialogRef: MatDialogRef<LoginComponent>,
       private toastService: ToastService,
       private router: Router,
@@ -47,7 +45,7 @@ export class LoginComponent {
     get username() {
         return this.form.controls['username'];
     }
-    
+
     get password() {
         return this.form.controls['password'];
     }
@@ -78,10 +76,10 @@ export class LoginComponent {
       else{
         this.toastService.showToast("Please review your information", "error");
     }
-        
+
     }
 
-    
+
   closeDialog(): void {
     this.dialogRef.close();
   }
@@ -90,11 +88,4 @@ export class LoginComponent {
     this.router.navigate(['/events']);
   }
 
-  openSignUp(): void {
-    this.dialog.open(SignUpComponent, {
-      width: '50%',
-      position: { right: '0' },
-      panelClass: 'custom-dialog-container'
-    });
-  }
 }

@@ -72,7 +72,7 @@ export class EventListComponent implements OnInit {
     }
   }
 
-  loadEvents(category: string | null = null): void {
+  loadEvents(): void {
     this.events$ = this.eventService.getAll()
       .pipe(
         catchError((error: HttpResponse<any>) => {
