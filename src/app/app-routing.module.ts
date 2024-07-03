@@ -8,11 +8,8 @@ import {EventCreationComponent} from "./components/event-creation/event-creation
 import {EventPageComponent} from "./components/event-page/event-page.component";
 import { SearchPageComponent } from './components/search/search-page.component';
 import { CityListComponent } from './components/city-list/city-list.component';
-<<<<<<< HEAD
-=======
 import { ReviewCreationComponent } from './components/review-creation/review-creation.component';
 import { ReviewManagementComponent } from './components/review-management/review-management.component';
->>>>>>> bd392f3 ((Add) : my reviews page implementation)
 
 
 const routes: Routes = [

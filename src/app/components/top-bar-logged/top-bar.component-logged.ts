@@ -38,8 +38,6 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/account']);
   }
 
-<<<<<<< HEAD
-=======
   goToMyReviews() {
     this.router.navigate(['/my-reviews']);
   }
@@ -52,7 +50,6 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/my-friends-events']);
   }
 
->>>>>>> bd392f3 ((Add) : my reviews page implementation)
   logout() {
     this.sessionStorageService.clear();
     this.router.navigate(['/']);
