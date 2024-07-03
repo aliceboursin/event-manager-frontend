@@ -51,9 +51,9 @@ export class EventListComponent implements OnInit {
     } else if (this.route.snapshot.params.hasOwnProperty('city')) {
       this.loadEventPerCity(this.route.snapshot.params['city']);
       this.title = "Explore By Cities";
-    } else if (this.router.url === '/events/passed-events') {
-      this.title = "Passed Events";
-      this.loadPassedEvents();
+    } else if (this.router.url === '/events/past-events') {
+      this.title = "Past Events";
+      this.loadPastEvents();
     } else if (this.router.url === '/events/upcoming-events') {
       this.title = "Upcoming Events";
       this.loadUpcomingEvents();
@@ -114,8 +114,8 @@ export class EventListComponent implements OnInit {
     });
   }
 
-  loadPassedEvents() {
-    this.events$ = this.eventService.getPassedEvents()
+  loadPastEvents() {
+    this.events$ = this.eventService.getPastEvents()
       .pipe(
         catchError((error: HttpResponse<any>) => {
           console.log(error);

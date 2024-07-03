@@ -5,7 +5,12 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;}
-body {display: flex; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: black}
+body {display: flex; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color:black}
+
+.account-page body,
+.my-reviews-page body {
+    background-color: #f0f0f0;
+}
 
 
 .navbar {

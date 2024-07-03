@@ -50,7 +50,6 @@ import { RatingModule } from 'primeng/rating';
 import { ReviewListComponent } from './components/review-list/review-list.component';
 import { ReviewManagementComponent } from './components/review-management/review-management.component';
 import { ReviewService } from './services/review.service';
-import { ReviewManagementItemComponent } from './components/review-management-item/review-management-item.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +75,6 @@ import { ReviewManagementItemComponent } from './components/review-management-it
     FilterBarComponent,
     ReviewListComponent,
     ReviewManagementComponent,
-    ReviewManagementItemComponent,
   ],
   imports: [
     BrowserModule,
