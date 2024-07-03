@@ -79,11 +79,9 @@ export class EventPageComponent implements OnInit {
     }
     else{
       this.eventService.deleteParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
-
     }
-    this.getCountParticipants(eventId);
-
     this.toggleParticipation();
+    this.ngOnInit();
     }
   }
 
