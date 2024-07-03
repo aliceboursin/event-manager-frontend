@@ -59,7 +59,7 @@ export class LoginComponent {
       }
       this.authService.login(data).subscribe(
           response => {
-            console.log('Login successful:', response);
+            console.log('Login successful:');
             const userId = response.userId;
             this.sessionStorageService.setItem('userId', userId);
             this.sessionStorageService.setItem('username', this.form.get('username')?.value ?? '');

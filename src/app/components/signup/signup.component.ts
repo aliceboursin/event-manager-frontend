@@ -76,7 +76,7 @@ export class SignUpComponent {
             }
             this.authService.signup(data).subscribe(
                 response => {
-                  console.log('Register successful:', response);
+                  console.log('Register successful:');
                   const userId = response.userId;
                   this.sessionStorageService.setItem('userId', userId);
                   this.sessionStorageService.setItem('username', this.form.get('username')?.value ?? '');

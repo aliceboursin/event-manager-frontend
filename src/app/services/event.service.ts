@@ -42,11 +42,7 @@ export class EventService {
   }
 
   deleteById(id: string): Observable<void> {
-    const url = `${this.eventUrl}/delete/${id}`;
-    console.log(url)
-    return this.http.delete<void>(url, {
-      headers: {'Content-Type': 'application/json'}
-    });
+    return this.http.delete<any>(`${environment.apiUrl}events/${id}`);
   }
 
   getCountParticipants(id: String) {
@@ -62,13 +58,11 @@ export class EventService {
   }
 
   getPastEvents(): Observable<Event[]> {
-    console.log("past events");
     const url = `${this.eventUrl}/past-events`;
     return this.http.get<Event[]>(url);
   }
 
   getUpcomingEvents(): Observable<Event[]> {
-    console.log("upcoming events");
     const url = `${this.eventUrl}/upcoming-events`;
     return this.http.get<Event[]>(url);
   }

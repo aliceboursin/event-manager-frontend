@@ -56,7 +56,6 @@ export class EventPageComponent implements OnInit {
           if (userId) {
             this.eventService.isParticipating(event.id, userId).subscribe(isParticipating => {
               this.isParticipating = isParticipating;
-              console.log("is participating : " + isParticipating);
             });
           }
         }
@@ -64,16 +63,26 @@ export class EventPageComponent implements OnInit {
   }
 
   handleDeleteButton(id: string) {
+    if (!id) {
+      console.error('ID is null or undefined');
+      this.toastService.showToast("Failed to delete this eent", "error");
+      return;
+    }
+
     this.eventService.deleteById(id)
       .pipe(
-        catchError((error:HttpResponse<any>) => {
-          console.log(error);
-          return of()
+        catchError((error: any) => {
+          console.error('Error occurred during delete:', error);
+          this.toastService.showToast("Failed to delete this eent", "error");
+          return of();
         })
-      );
-    this.router.navigate(['/events']);
-
+      )
+      .subscribe(() => {
+        this.toastService.showToast("Event deleted successfully", "success");
+        this.router.navigate(['/events']);
+      });
   }
+  
 
 
   getCountParticipants(id: string): void {
