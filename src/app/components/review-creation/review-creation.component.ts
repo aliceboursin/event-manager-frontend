@@ -34,7 +34,7 @@ export class ReviewCreationComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.isSubmitted = true;
     if (this.eventForm.valid) {
       const ownerUser = this.sessionStorage.getItem('userId')!;
@@ -56,9 +56,9 @@ export class ReviewCreationComponent implements OnInit {
             timer: 3000,
             timerProgressBar: true,
           });
-          
+
+          this.reviewSubmitted.emit(); // Emit the event here
         });
-        this.reviewSubmitted.emit();
       }
     } else {
       Swal.fire({
@@ -73,6 +73,10 @@ export class ReviewCreationComponent implements OnInit {
     }
   }
 
+  close(): void {
+    this.reviewSubmitted.emit(); // Emit the event here too
+    console.log("close");
+  }
 
 
   get comment(): AbstractControl | null {
@@ -83,8 +87,4 @@ export class ReviewCreationComponent implements OnInit {
     return this.eventForm.get('grade');
   }
 
-  close(){
-    this.reviewSubmitted.emit();
-    console.log("close");
-  }
 }

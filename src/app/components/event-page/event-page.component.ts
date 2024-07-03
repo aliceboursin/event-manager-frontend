@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from "../../services/event.service";
 import { Event } from "../../data/event";
@@ -94,5 +94,19 @@ export class EventPageComponent implements OnInit {
   toggleReviewForm(): void {
     this.showReviewForm = !this.showReviewForm;
   }
+
+  handleReviewSubmitted(): void {
+    this.toggleReviewForm();
+    this.reloadReviews();
+  }
+
+  reloadReviews(): void {
+    const reviewListComponent = this.reviewListComponent;
+    if (reviewListComponent) {
+      reviewListComponent.reload();
+    }
+  }
+
+  @ViewChild('reviewListComponent') reviewListComponent!: any;
 
 }

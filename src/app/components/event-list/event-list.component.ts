@@ -26,12 +26,12 @@ export class EventListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService : UserService,
-    private sesssionStorageService : SessionStorageService,
+    private sessionStorageService : SessionStorageService,
   ) {}
 
 
   ngOnInit(): void {
-    this.userId = this.sesssionStorageService.getItem('userId');
+    this.userId = this.sessionStorageService.getItem('userId');
     if(this.userId){
       this.userService.getFriendsParticipationEventId(this.userId).subscribe(ids => {
       this.friendEventIds = new Set(ids);

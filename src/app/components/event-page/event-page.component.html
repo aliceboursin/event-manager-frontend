@@ -50,10 +50,10 @@
       </h2>
       <div *ngIf="showReviewForm" class="review-creation-container mt-5">
         <button class="close-btn" (click)="toggleReviewForm()">✖</button>
-        <app-review-creation [eventId]="event.id"></app-review-creation>
+        <app-review-creation [eventId]="event.id" (reviewSubmitted)="handleReviewSubmitted()"></app-review-creation>
       </div>
       <hr class="divider">
-      <app-review-list></app-review-list>
+      <app-review-list #reviewListComponent></app-review-list>
     </div>
 
     <div class="container mt-5">

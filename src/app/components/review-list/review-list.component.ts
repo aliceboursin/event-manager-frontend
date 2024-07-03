@@ -14,7 +14,6 @@ import {EventService} from "../../services/event.service";
 })
 export class ReviewListComponent implements OnInit {
   reviews$: Observable<Review[]> | null = null;
-  reviews: Review[] = [];
   userId: string | null = null;
 
   constructor(
@@ -22,13 +21,13 @@ export class ReviewListComponent implements OnInit {
     private route: ActivatedRoute,
     private userService : UserService,
     private eventService : EventService,
-    private sesssionStorageService : SessionStorageService,
+    private sessionStorageService : SessionStorageService,
   ){}
 
 
   ngOnInit(): void {
     if (this.router.url === '/account') {
-      this.userId = this.sesssionStorageService.getItem('userId');
+      this.userId = this.sessionStorageService.getItem('userId');
       if (this.userId) {
         this.getAllReviewsForUser(this.userId);
       }
@@ -56,12 +55,10 @@ export class ReviewListComponent implements OnInit {
               return of([])
             })
         );
-   /* this.eventService.getAllEventReviews(eventId).subscribe(reviews => {
-      this.reviews = reviews;
-      console.log(reviews);
-    });*/
 
+  }
 
-
+  reload() {
+    this.ngOnInit();
   }
 }
