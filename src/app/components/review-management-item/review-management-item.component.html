@@ -1,0 +1,19 @@
+<div class="review-card">
+    <div class="event-summary">
+      <h3>{{ review.event.title }}</h3>
+      <div class="badge bg-info text-white">{{ review.event.category.name }}</div>
+      <p>By: {{ review.event.owner.username }}</p>
+      <p>{{ review.event.date | date: "longDate"  }}</p>
+      <p>{{ review.event.description | slice:0:100 }}...</p>
+    </div>
+    <div class="review-details">
+      <p-rating [(ngModel)]="review.grade" [readonly]="true" [cancel]="false" class="custom-rating"></p-rating>
+      <p>{{ review.comment }}</p>
+      <button class="options-btn" (click)="toggleOptions()">Options</button>
+      <div *ngIf="showOptions" class="options">
+        <button (click)="onDelete()">Delete</button>
+        <button (click)="onEdit()">Edit</button>
+      </div>
+    </div>
+  </div>
+  

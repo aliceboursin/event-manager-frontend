@@ -38,6 +38,21 @@ export class TopBarLoggedComponent{
     this.router.navigate(['/account']);
   }
 
+<<<<<<< HEAD
+=======
+  goToMyReviews() {
+    this.router.navigate(['/my-reviews']);
+  }
+
+  goToMyEvents() {
+    this.router.navigate(['/my-events']);
+  }
+
+  goToMyFriendsEvents() {
+    this.router.navigate(['/my-friends-events']);
+  }
+
+>>>>>>> bd392f3 ((Add) : my reviews page implementation)
   logout() {
     this.sessionStorageService.clear();
     this.router.navigate(['/']);
@@ -67,11 +82,11 @@ export class TopBarLoggedComponent{
     this.router.navigate(['events/my-events/past-events'])
   }
 
-  get isAccountPage(): boolean {
-    return this.router.url === '/account';
+  get isAccountOrMyReviewsPage(): boolean {
+    return (this.router.url === '/account')|| (this.router.url==='/my-reviews');
   }
 
   get navbarClass(): string {
-    return this.isAccountPage ? 'account-page' : 'default-page';
+    return this.isAccountOrMyReviewsPage ? 'account-page' : 'default-page';
   }
 }

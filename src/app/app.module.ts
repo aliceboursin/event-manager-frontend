@@ -36,6 +36,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
+import { ButtonModule } from 'primeng/button';
 
 import { EventCreationComponent } from './components/event-creation/event-creation.component';
 import { ReviewCreationComponent } from './components/review-creation/review-creation.component';
@@ -44,6 +48,9 @@ import { SearchPageComponent } from './components/search/search-page.component';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 import { RatingModule } from 'primeng/rating';
 import { ReviewListComponent } from './components/review-list/review-list.component';
+import { ReviewManagementComponent } from './components/review-management/review-management.component';
+import { ReviewService } from './services/review.service';
+import { ReviewManagementItemComponent } from './components/review-management-item/review-management-item.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +75,8 @@ import { ReviewListComponent } from './components/review-list/review-list.compon
     SearchPageComponent,
     FilterBarComponent,
     ReviewListComponent,
+    ReviewManagementComponent,
+    ReviewManagementItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +97,10 @@ import { ReviewListComponent } from './components/review-list/review-list.compon
     MatNativeDateModule,
     MatExpansionModule,
     RatingModule,
+    DataViewModule,
+    DropdownModule,
+    ButtonModule,
+    TagModule,
   ],
   providers: [
     AuthService,
@@ -97,6 +110,7 @@ import { ReviewListComponent } from './components/review-list/review-list.compon
     provideAnimationsAsync(),
     FriendShipService,
     UserService,
+    ReviewService,
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
 

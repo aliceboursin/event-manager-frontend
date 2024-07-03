@@ -1,0 +1,61 @@
+<div class="my-reviews-top-bar account-page">
+    <app-top-bar-logged></app-top-bar-logged>
+</div>
+
+<body>
+    <div class="container">
+        <h2>My Reviews</h2>
+        <div class="card mb-3" *ngFor="let item of reviews">
+            <div class="row align-items-center rounded p-4" style="background: none; border: none;">
+                <div class="col-md-3">
+                    <div class="md:w-10rem relative">
+                        <img class="block xl:block mx-auto border-round w-full" style="height: 150px; border-radius: 6%;" [routerLink]="['/events', item.event.id]" [src]="'assets/' + item.event.category.name + '.jpg'" [alt]="item.event.category.name" />
+                        <div class="badge bg-info text-white" style="position: absolute; top: 18%; left: 3%;">{{ item.event.category.name }}</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="flex flex-column md:flex-row justify-content-between md:align-items-center gap-4">
+                        <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
+                            <div>
+                                <span style="font-weight: 500; font-size: large;">{{ item.event.title }}</span>
+                                <div class="font-medium text-secondary text-sm">{{ item.event.city }}</div>
+                                <div class="font-medium text-secondary text-sm">{{ item.event.date }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class = "stars">
+                        <span style="color: #c298d8;">
+                                    <i class="fa-solid fa-star" *ngFor="let star of getFilledStars(item.grade)"></i>
+                                </span>
+                                <span style="color: #c298d8;">
+                                    <i class="fa-regular fa-star" *ngFor="let star of getEmptyStars(item.grade)"></i>
+                                </span>
+                    </div>
+                    <div class="text-lg font-medium text-900 mt-2" style="color: black; max-width: 100%;">
+                            {{ item.comment.length > 150 ? item.comment.slice(0, 150) + '...' : item.comment }}
+                    </div>
+                 
+                    <button class="delete-btn" (click)="onDelete(item)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+=
+
+  
+  
+
+
+  
+
+  
+

@@ -1,4 +1,5 @@
-import { User } from "./user";
+import { User } from "../data/user";
+import { Event } from "../data/event";
 
 export interface Review {
     id: string;
@@ -16,3 +17,6 @@ export interface CreateReviewRequest {
   comment : string;
   grade : number;
 }
+
+
+

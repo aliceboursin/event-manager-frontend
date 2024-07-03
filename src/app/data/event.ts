@@ -10,7 +10,7 @@ export interface Event {
     address : string;
     date : Date;
     time : Time;
-    description : String;
+    description : string;
     category : Category;
     owner : User;
     last_updated: Date
@@ -24,7 +24,7 @@ export interface CreateEventRequest {
   address : string;
   date : Date;
   time : Time;
-  description : String;
+  description : string;
   category : Category;
-  owner : String;
+  owner : string;
 }
