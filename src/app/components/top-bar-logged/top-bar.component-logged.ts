@@ -58,8 +58,8 @@ export class TopBarLoggedComponent{
   navigateToSearch(): void {
     this.router.navigate(['/search']);
   }
-  goToPassedEvents() {
-    this.router.navigate(['events/passed-events']);
+  goToPastEvents() {
+    this.router.navigate(['events/past-events']);
   }
 
 

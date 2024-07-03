@@ -61,8 +61,8 @@ export class EventService {
     });
   }
 
-  getPassedEvents(): Observable<Event[]> {
-    console.log("passed events");
+  getPastEvents(): Observable<Event[]> {
+    console.log("past events");
     const url = `${this.eventUrl}/past-events`;
     return this.http.get<Event[]>(url);
   }

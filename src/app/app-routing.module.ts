@@ -29,7 +29,7 @@ const routes: Routes = [
         component: EventCreationComponent
       },
       {
-        path: 'passed-events',
+        path: 'past-events',
         component: EventListComponent
       },
       {
