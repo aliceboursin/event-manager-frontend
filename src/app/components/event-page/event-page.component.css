@@ -50,6 +50,14 @@ p {
   float: right;
 }
 
+.delete-btn {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  cursor: pointer;
+  float: right;
+}
+
 .participate-btn {
   background-color: #007bff;
   color: white;

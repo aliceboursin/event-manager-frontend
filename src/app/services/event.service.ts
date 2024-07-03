@@ -42,8 +42,11 @@ export class EventService {
   }
 
   deleteById(id: string): Observable<void> {
-    const url = `${this.eventUrl}/${id}`;
-    return this.http.delete<void>(url);
+    const url = `${this.eventUrl}/delete/${id}`;
+    console.log(url)
+    return this.http.delete<void>(url, {
+      headers: {'Content-Type': 'application/json'}
+    });
   }
 
   getCountParticipants(id: String) {

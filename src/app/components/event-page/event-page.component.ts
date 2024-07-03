@@ -6,6 +6,8 @@ import {catchError, Observable, of} from "rxjs";
 import {HttpResponse} from "@angular/common/http";
 import {SessionStorageService} from "../../services/session.storage.service";
 import {ToastService} from "../../services/toast.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-event-page',
@@ -15,7 +17,7 @@ import {ToastService} from "../../services/toast.service";
 export class EventPageComponent implements OnInit {
   event$: Observable<Event> | null = null;
   participants$: Observable<number> | null = null;
-  ownerUser: string | null = null;
+  currentUser: string | null = null;
   isParticipating: boolean = false;
   showReviewForm: boolean = false;
 
@@ -24,10 +26,12 @@ export class EventPageComponent implements OnInit {
     private toastService: ToastService,
     private eventService: EventService,
     private sessionStorage: SessionStorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     const eventId = this.route.snapshot.paramMap.get('id');
+    this.currentUser = sessionStorage.getItem("userId");
     if (eventId) {
       this.getEvent(eventId);
       this.getCountParticipants(eventId);
@@ -59,6 +63,19 @@ export class EventPageComponent implements OnInit {
       });
   }
 
+  handleDeleteButton(id: string) {
+    this.eventService.deleteById(id)
+      .pipe(
+        catchError((error:HttpResponse<any>) => {
+          console.log(error);
+          return of()
+        })
+      );
+    this.router.navigate(['/events']);
+
+  }
+
+
   getCountParticipants(id: string): void {
     this.participants$ = this.eventService.getCountParticipants(id)
       .pipe(
@@ -70,15 +87,14 @@ export class EventPageComponent implements OnInit {
   }
 
   handleParticipationButton(eventId: string): void {
-    this.ownerUser = sessionStorage.getItem("userId");
-    if (!this.ownerUser) {
+    if (!this.currentUser) {
       console.log("no user logged")
     }else{
       if(!this.isParticipating){
-        this.eventService.addParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
+        this.eventService.addParticipation(eventId, this.currentUser).subscribe(res => console.log(res));
     }
     else{
-      this.eventService.deleteParticipation(eventId, this.ownerUser).subscribe(res => console.log(res));
+      this.eventService.deleteParticipation(eventId, this.currentUser).subscribe(res => console.log(res));
     }
     this.toggleParticipation();
     this.ngOnInit();
